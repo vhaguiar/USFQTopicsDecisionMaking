@@ -16,7 +16,7 @@ using Tables
 ################################################################################
 ## Setting-up directory
 tempdir1=@__DIR__
-repdir=tempdir1[1:findfirst("MicroI/final2020",tempdir1)[end]]
+repdir=tempdir1[1:findfirst("USFQTopicsDecisionMaking",tempdir1)[end]]
 
 diroutput=repdir*"/programming/results"
 dirdata=repdir*"/programming/data"
@@ -116,6 +116,7 @@ JuMP.@objective(sigmaestim,Min,sum(sum((z[i,j]-α*log(t[i,j])-Pv[i]-Pv[j])^2 for
 
 
 JuMP.optimize!(sigmaestim)
-
-JuMP.value.(α)
 JuMP.value.(Pv)
+JuMP.value.(α)
+##Real parameter
+σ
