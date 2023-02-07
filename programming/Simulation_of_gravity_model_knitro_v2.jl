@@ -5,7 +5,7 @@
 ## Import packages, make sure to install them.
 ## Julia version: v"1.8"
 import JuMP
-#import KNITRO
+import KNITRO
 import Ipopt
 import Distributions
 using CSV, DataFrames
@@ -62,7 +62,7 @@ end
 θ
 
 ## Simulating demand and prices
-#gravity=JuMP.Model(KNITRO.Optimizer)
+gravity=JuMP.Model(KNITRO.Optimizer)
 gravity=JuMP.Model(Ipopt.Optimizer)
 JuMP.@variable(gravity,P[1:I]>=1)
 
@@ -118,5 +118,7 @@ JuMP.@objective(sigmaestim,Min,sum(sum((z[i,j]-α*log(t[i,j])-Pv[i]-Pv[j])^2 for
 JuMP.optimize!(sigmaestim)
 JuMP.value.(Pv)
 JuMP.value.(α)
+1-JuMP.value.(α)
 ##Real parameter
 σ
+JuMP.value.(Pv)

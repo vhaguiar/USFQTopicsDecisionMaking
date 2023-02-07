@@ -199,7 +199,7 @@ If
 \begin_layout Problem
 \begin_inset Formula 
 \[
-U(c)=\left(\sum_{i\in I}\beta_{i}^{(1-\sigma)/\sigma}c_{ij}^{(\sigma-1)/\sigma}\right)^{\sigma/(\sigma-1)},
+U_{j}(c)=\left(\sum_{i\in I}\beta_{i}^{(1-\sigma)/\sigma}c_{ij}^{(\sigma-1)/\sigma}\right)^{\sigma/(\sigma-1)},
 \]
 
 \end_inset
