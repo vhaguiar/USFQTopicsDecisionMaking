@@ -977,7 +977,7 @@ Consider a simple market with aggregate demand given by
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\mathbf{p}=\frac{a-\alpha}{b+\beta}+\frac{\mathbf{u}-\mathbf{v}}{b+\beta}.
+\mathbf{p}=\frac{a-\alpha}{b+\beta}-\frac{\mathbf{u}+\mathbf{v}}{b+\beta}.
 \]
 
 \end_inset
@@ -1139,18 +1139,6 @@ E[\mathbf{x}_{v}\mathbf{e}]=0.
 \end_layout
 
 \begin_layout Standard
-Also for simplicity 
-\begin_inset Formula 
-\[
-E[\mathbf{x}_{v}]=0
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 The IV estimator of 
 \begin_inset Formula $b$
 \end_inset
@@ -1198,12 +1186,20 @@ E[\mathbf{px_{v}}]=E[\frac{a-\alpha}{b+\beta}\mathbf{x}_{v}+\frac{\mathbf{u}x_{v
 \begin_layout Standard
 \begin_inset Formula 
 \[
-E[\mathbf{y}]E[\mathbf{x_{v}}]=[\frac{a\beta+b\alpha}{b+\beta}\mathbf{x_{v}}]
+E[\mathbf{y}]E[\mathbf{x_{v}}]=[\frac{a\beta+b\alpha}{b+\beta}\mathbf{x_{v}}],
 \]
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+with 
+\begin_inset Formula $E[\mathbf{u}]=E[\mathbf{v}]=0$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1246,10 +1242,6 @@ Note that this is all done at the population level.
  Of course, the credibility of your model and your identification will rely
  on how plausible it is that the exclusion restriction holds.
  
-\end_layout
-
-\begin_layout Standard
-
 \end_layout
 
 \end_body

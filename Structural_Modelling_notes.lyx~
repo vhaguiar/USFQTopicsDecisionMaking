@@ -1139,18 +1139,6 @@ E[\mathbf{x}_{v}\mathbf{e}]=0.
 \end_layout
 
 \begin_layout Standard
-Also for simplicity 
-\begin_inset Formula 
-\[
-E[\mathbf{x}_{v}]=0
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 The IV estimator of 
 \begin_inset Formula $b$
 \end_inset
@@ -1161,7 +1149,7 @@ The IV estimator of
 \begin_layout Standard
 \begin_inset Formula 
 \[
-b^{IV}=\frac{Cov[\mathbf{y}\mathbf{x_{v}}]}{Cov[\mathbf{p}\mathbf{x}_{v}]}
+b^{IV}=-\frac{Cov[\mathbf{y}\mathbf{x_{v}}]}{Cov[\mathbf{p}\mathbf{x}_{v}]}
 \]
 
 \end_inset
@@ -1187,7 +1175,7 @@ E[\mathbf{yx}_{v}]=E[\frac{a\beta+b\alpha}{b+\beta}\mathbf{x}_{v}+\frac{\beta\ma
 \begin_layout Standard
 \begin_inset Formula 
 \[
-E[\mathbf{px_{v}}]=E[\frac{a-\alpha}{b+\beta}\mathbf{x}_{v}+\frac{\mathbf{u}x_{v}-\mathbf{v}\mathbf{x}_{v}}{b+\beta}]=E[\frac{a-\alpha}{b+\beta}\mathbf{x}_{v}+\frac{\mathbf{v}\mathbf{x}_{v}}{b+\beta}]
+E[\mathbf{px_{v}}]=E[\frac{a-\alpha}{b+\beta}\mathbf{x}_{v}+\frac{\mathbf{u}x_{v}-\mathbf{v}\mathbf{x}_{v}}{b+\beta}]=E[\frac{a-\alpha}{b+\beta}\mathbf{x}_{v}-\frac{\mathbf{v}\mathbf{x}_{v}}{b+\beta}]
 \]
 
 \end_inset
@@ -1198,12 +1186,20 @@ E[\mathbf{px_{v}}]=E[\frac{a-\alpha}{b+\beta}\mathbf{x}_{v}+\frac{\mathbf{u}x_{v
 \begin_layout Standard
 \begin_inset Formula 
 \[
-E[\mathbf{y}]E[\mathbf{x_{v}}]=[\frac{a\beta+b\alpha}{b+\beta}\mathbf{x_{v}}]
+E[\mathbf{y}]E[\mathbf{x_{v}}]=[\frac{a\beta+b\alpha}{b+\beta}\mathbf{x_{v}}],
 \]
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+with 
+\begin_inset Formula $E[\mathbf{u}]=E[\mathbf{v}]=0$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1220,7 +1216,7 @@ E[\mathbf{p}]E[\mathbf{x_{v}}]=E[\frac{a-\alpha}{b+\beta}\mathbf{x}_{v}]
 \begin_layout Standard
 \begin_inset Formula 
 \[
-b^{IV}=\frac{Cov[\mathbf{y}\mathbf{x_{v}}]}{Cov[\mathbf{p}\mathbf{x}_{v}]}=b.
+b^{IV}=-\frac{Cov[\mathbf{y}\mathbf{x_{v}}]}{Cov[\mathbf{p}\mathbf{x}_{v}]}=b.
 \]
 
 \end_inset

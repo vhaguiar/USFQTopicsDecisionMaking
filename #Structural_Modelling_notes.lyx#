@@ -1139,18 +1139,6 @@ E[\mathbf{x}_{v}\mathbf{e}]=0.
 \end_layout
 
 \begin_layout Standard
-Also for simplicity 
-\begin_inset Formula 
-\[
-E[\mathbf{x}_{v}]=0
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 The IV estimator of 
 \begin_inset Formula $b$
 \end_inset
@@ -1231,7 +1219,21 @@ b^{IV}=\frac{Cov[\mathbf{y}\mathbf{x_{v}}]}{Cov[\mathbf{p}\mathbf{x}_{v}]}=b.
 \begin_layout Standard
 Note that this is all done at the population level.
  In real life you will get a finite sample and will have to provide sample
- analogues of the 
+ analogues of the the quantities above and will obtain an estimator 
+\begin_inset Formula $\hat{b}^{IV}$
+\end_inset
+
+, that will converge to 
+\begin_inset Formula $b$
+\end_inset
+
+ as the sample size goes to infinity (i.e., consistent estimator).
+ The short story about this is that identifying structural parameters often
+ needs (i) additional exogenous variation, (ii) assuming a functional form,
+ (iii) assuming exclusion restrictions.
+ Of course, the credibility of your model and your identification will rely
+ on how plausible it is that the exclusion restriction holds.
+ 
 \end_layout
 
 \end_body
