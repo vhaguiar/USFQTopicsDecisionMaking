@@ -1,7 +1,7 @@
 ###Simple illustration of ELVIS
 ## vhaguiar@gmail.com
 import JuMP
-import Ipopt
+import KNITRO
 import Distributions
 using CSV, DataFrames
 using Random
@@ -200,15 +200,15 @@ dvecM
 sum(dvecM,dims=1)./n
 
 ## Objective Function
-ELVIS = JuMP.Model(Ipopt.Optimizer) 
+ELVIS = JuMP.Model(KNITRO.Optimizer) 
 JuMP.@variable(ELVIS, gamma[1:dg])
 
 
 function ElvisGMM(gamma...)
     MEMMC(gamma)
     dvecM[isnan.(dvecM)] .= 0
-    dvecM[isinf.(dvecM) .& (dvecM .> 0)] .= typemax(Float64)
-    dvecM[isinf.(dvecM) .& (dvecM .< 0)] .= -typemax(Float64)
+    dvecM[isinf.(dvecM) .& (dvecM .> 0)] .= 10e40
+    dvecM[isinf.(dvecM) .& (dvecM .< 0)] .= -10e40
     dvec=sum(dvecM,dims=1)'/n
     
     numvar=zeros(dg,dg)
@@ -217,8 +217,8 @@ function ElvisGMM(gamma...)
     end
     var=numvar+numvar'- Diagonal(diag(numvar))-dvec*dvec'
     var[isnan.(var)] .= 0
-    var[isinf.(var) .& (var .> 0)] .= typemax(Float64)
-    var[isinf.(var) .& (var .< 0)] .= -typemax(Float64)
+    var[isinf.(var) .& (var .> 0)] .=10e40
+    var[isinf.(var) .& (var .< 0)] .= -10e40
     (Lambda,QM)=eigen(var)
     inddummy=Lambda.>0.001
     An=QM[:,inddummy]
