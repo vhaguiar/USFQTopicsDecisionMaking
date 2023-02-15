@@ -62,7 +62,7 @@ end
 θ
 
 ## Simulating demand and prices
-gravity=JuMP.Model(KNITRO.Optimizer)
+#gravity=JuMP.Model(KNITRO.Optimizer)
 gravity=JuMP.Model(Ipopt.Optimizer)
 JuMP.@variable(gravity,P[1:I]>=1)
 

@@ -1253,7 +1253,7 @@ Nonparametric Methods
 \end_layout
 
 \begin_layout Section
-Entropic Latent Variable Integration via Simulation (ELVIS)
+Entropic Latent Variable Integratation via Simulation (ELVIS)
 \end_layout
 
 \begin_layout Standard
@@ -1284,7 +1284,7 @@ We consider again a consumer setup.
 \end_inset
 
  be an unobserved random vector 
-\begin_inset Formula $\mathbf{e}=(\mathbf{\alpha,(\lambda_{t})_{t\in\mathcal{T}}},(\mathbf{w}_{t})_{t\in\mathcal{T}})$
+\begin_inset Formula $\mathbf{e}=(\mathbf{\alpha,(\lambda_{t})_{t\in\mathcal{T}}},(\mathbf{\epsilon}_{t})_{t\in\mathcal{T}})$
 \end_inset
 
 .
@@ -1305,19 +1305,15 @@ We consider again a consumer setup.
 \begin_inset Formula $\mathbf{\mathbf{\mathbf{\mathbf{\lambda}}}}=(\mathbf{\lambda}_{t})_{t\in\mathcal{T}}$
 \end_inset
 
- 
-\series default
-supported on 
-\begin_inset Formula $\mathbb{R}_{++}$
-\end_inset
 
+\series default
  are 
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-g_{A,t,1}(x,e)=1(c_{t,1}-w_{t,1}=(\frac{\lambda_{t}p_{t,1}}{\alpha})^{\frac{1}{\alpha-1}})-1\forall t
+g_{A,l,1}(x,e)=1(x_{t,1}-w_{t,1}=(\frac{\lambda_{t}p_{t,1}}{\alpha})^{\frac{1}{\alpha-1}})-1\forall t
 \]
 
 \end_inset
@@ -1328,7 +1324,7 @@ g_{A,t,1}(x,e)=1(c_{t,1}-w_{t,1}=(\frac{\lambda_{t}p_{t,1}}{\alpha})^{\frac{1}{\
 \begin_layout Standard
 \begin_inset Formula 
 \[
-g_{A,t,2}(x,e)=1(c_{t,2}-w_{t,2}=(\frac{\lambda_{t}p_{t,2}}{1-\alpha})^{-\frac{1}{\alpha}})-1\forall t
+g_{A,l,2}(x,e)=1(x_{t,2}-w_{t,2}=(\frac{\lambda_{t}p_{t,2}}{1-\alpha})^{-\frac{1}{\alpha}})-1\forall t
 \]
 
 \end_inset
@@ -1339,7 +1335,7 @@ g_{A,t,2}(x,e)=1(c_{t,2}-w_{t,2}=(\frac{\lambda_{t}p_{t,2}}{1-\alpha})^{-\frac{1
 \begin_layout Standard
 \begin_inset Formula 
 \[
-g_{M,k}(x,e)=w_{t,k}\forall k
+g_{M}(x,e)=w_{t,k}
 \]
 
 \end_inset
@@ -1352,15 +1348,7 @@ This means that there is a joint distribution
 \begin_inset Formula $\mu\times\pi_{0}$
 \end_inset
 
-, for some measure 
-\begin_inset Formula $\mu\in\mathcal{P}_{E|X}$
-\end_inset
-
- and 
-\begin_inset Formula $\pi_{0}\in\mathcal{P}_{X}$
-\end_inset
-
- the observed measure, over the support of 
+ over the support of 
 \begin_inset Formula $X\times E$
 \end_inset
 
@@ -1370,7 +1358,7 @@ This means that there is a joint distribution
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\mu\times\pi_{0}(\omega\in\Omega:c_{t,1}(\omega)-w_{t,1}(\omega)=(\frac{\lambda_{t}(\omega)p_{t,1}(\omega)}{\alpha(\omega)})^{\frac{1}{\alpha(\omega)-1}})=1\forall t
+\mu\times\pi_{0}(\omega:c_{t,1}(\omega)-w_{t,1}(\omega)=(\frac{\lambda_{t}(\omega)p_{t,1}}{\alpha(\omega)})^{\frac{1}{\alpha(\omega)-1}})=1\forall t
 \]
 
 \end_inset
@@ -1381,7 +1369,7 @@ This means that there is a joint distribution
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\mu\times\pi_{0}(\omega\in\Omega:c_{t,1}(\omega)-w_{t,1}(\omega)=(\frac{\lambda_{t}(\omega)p_{t,2}(\omega)}{1-\alpha(\omega)})^{-\frac{1}{\alpha(\omega)}})=1\forall t
+\mu\times\pi_{0}(\omega:c_{t,1}(\omega)-w_{t,1}(\omega)=(\frac{\lambda_{t}(\omega)p_{t,2}}{1-\alpha(\omega)})^{-\frac{1}{\alpha(\omega)}})=1\forall t
 \]
 
 \end_inset
@@ -1517,7 +1505,7 @@ Note that
 \begin_layout Definition
 \begin_inset Formula 
 \[
-\{d\eta^{*}(\cdot|x;\gamma)=\frac{\exp(\gamma'g(x,\cdot))d\eta(\cdot|x)}{\int_{e\in E|X}\exp(\gamma'g(x,e))d\eta(e|x)},\gamma\in\mathbb{R}^{k+q}\}
+\{d\eta^{*}(\cdot|x;\gamma)=\frac{\exp(\gamma'g(x,\cdot))d\eta(\cdot|x)}{\int_{e\in E|X}\exp(\gamma'g(x,e)d\eta(e|x)},\gamma\in\mathbb{R}^{k+q}\}
 \]
 
 \end_inset
@@ -1614,6 +1602,10 @@ En Aguiar and Kashaev (AK 2022) hacemos un
 
  restringido.
  
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \begin_layout Standard

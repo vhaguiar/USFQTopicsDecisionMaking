@@ -135,6 +135,10 @@ Victor H.
 This version: January 2023
 \end_layout
 
+\begin_layout Part
+Parametric Methods
+\end_layout
+
 \begin_layout Section
 Structural Modeling 
 \end_layout
@@ -977,7 +981,7 @@ Consider a simple market with aggregate demand given by
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\mathbf{p}=\frac{a-\alpha}{b+\beta}+\frac{\mathbf{u}-\mathbf{v}}{b+\beta}.
+\mathbf{p}=\frac{a-\alpha}{b+\beta}-\frac{\mathbf{u}+\mathbf{v}}{b+\beta}.
 \]
 
 \end_inset
@@ -1149,7 +1153,7 @@ The IV estimator of
 \begin_layout Standard
 \begin_inset Formula 
 \[
-b^{IV}=-\frac{Cov[\mathbf{y}\mathbf{x_{v}}]}{Cov[\mathbf{p}\mathbf{x}_{v}]}
+b^{IV}=\frac{Cov[\mathbf{y}\mathbf{x_{v}}]}{Cov[\mathbf{p}\mathbf{x}_{v}]}
 \]
 
 \end_inset
@@ -1175,7 +1179,7 @@ E[\mathbf{yx}_{v}]=E[\frac{a\beta+b\alpha}{b+\beta}\mathbf{x}_{v}+\frac{\beta\ma
 \begin_layout Standard
 \begin_inset Formula 
 \[
-E[\mathbf{px_{v}}]=E[\frac{a-\alpha}{b+\beta}\mathbf{x}_{v}+\frac{\mathbf{u}x_{v}-\mathbf{v}\mathbf{x}_{v}}{b+\beta}]=E[\frac{a-\alpha}{b+\beta}\mathbf{x}_{v}-\frac{\mathbf{v}\mathbf{x}_{v}}{b+\beta}]
+E[\mathbf{px_{v}}]=E[\frac{a-\alpha}{b+\beta}\mathbf{x}_{v}+\frac{\mathbf{u}x_{v}-\mathbf{v}\mathbf{x}_{v}}{b+\beta}]=E[\frac{a-\alpha}{b+\beta}\mathbf{x}_{v}+\frac{\mathbf{v}\mathbf{x}_{v}}{b+\beta}]
 \]
 
 \end_inset
@@ -1216,7 +1220,7 @@ E[\mathbf{p}]E[\mathbf{x_{v}}]=E[\frac{a-\alpha}{b+\beta}\mathbf{x}_{v}]
 \begin_layout Standard
 \begin_inset Formula 
 \[
-b^{IV}=-\frac{Cov[\mathbf{y}\mathbf{x_{v}}]}{Cov[\mathbf{p}\mathbf{x}_{v}]}=b.
+b^{IV}=\frac{Cov[\mathbf{y}\mathbf{x_{v}}]}{Cov[\mathbf{p}\mathbf{x}_{v}]}=b.
 \]
 
 \end_inset
@@ -1242,6 +1246,382 @@ Note that this is all done at the population level.
  Of course, the credibility of your model and your identification will rely
  on how plausible it is that the exclusion restriction holds.
  
+\end_layout
+
+\begin_layout Part
+Nonparametric Methods
+\end_layout
+
+\begin_layout Section
+Entropic Latent Variable Integration via Simulation (ELVIS)
+\end_layout
+
+\begin_layout Standard
+We consider again a consumer setup.
+ 
+\begin_inset Formula $X=\mathbb{R}_{+}^{K}$
+\end_inset
+
+, 
+\begin_inset Formula $K=2$
+\end_inset
+
+, and 
+\begin_inset Formula $T=2$
+\end_inset
+
+, with time window 
+\begin_inset Formula $\mathcal{T}=\{1,2\}$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $\mathbf{x}=(\mathbf{p_{t},c_{t}})_{t\in\mathcal{T}}$
+\end_inset
+
+ be an observed random vector of consumptions and prices and 
+\begin_inset Formula $\mathbf{e}$
+\end_inset
+
+ be an unobserved random vector 
+\begin_inset Formula $\mathbf{e}=(\mathbf{\alpha,(\lambda_{t})_{t\in\mathcal{T}}},(\mathbf{w}_{t})_{t\in\mathcal{T}})$
+\end_inset
+
+.
+ Consider a 
+\begin_inset Formula $g$
+\end_inset
+
+ vector of moments.
+ The consumers are assumed to be Cobb-Douglas 
+\begin_inset Formula $u(c,\alpha)=c_{1}^{\alpha}+c_{2}^{(1-\alpha)}$
+\end_inset
+
+.
+ The first -order-conditions (FOC) of this problem given a lagrange multiplier
+ 
+\series bold
+
+\begin_inset Formula $\mathbf{\mathbf{\mathbf{\mathbf{\lambda}}}}=(\mathbf{\lambda}_{t})_{t\in\mathcal{T}}$
+\end_inset
+
+ 
+\series default
+supported on 
+\begin_inset Formula $\mathbb{R}_{++}$
+\end_inset
+
+ are 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+g_{A,t,1}(x,e)=1(c_{t,1}-w_{t,1}=(\frac{\lambda_{t}p_{t,1}}{\alpha})^{\frac{1}{\alpha-1}})-1\forall t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+g_{A,t,2}(x,e)=1(c_{t,2}-w_{t,2}=(\frac{\lambda_{t}p_{t,2}}{1-\alpha})^{-\frac{1}{\alpha}})-1\forall t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+g_{M,k}(x,e)=w_{t,k}\forall k
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This means that there is a joint distribution 
+\begin_inset Formula $\mu\times\pi_{0}$
+\end_inset
+
+, for some measure 
+\begin_inset Formula $\mu\in\mathcal{P}_{E|X}$
+\end_inset
+
+ and 
+\begin_inset Formula $\pi_{0}\in\mathcal{P}_{X}$
+\end_inset
+
+ the observed measure,  over the support of 
+\begin_inset Formula $X\times E$
+\end_inset
+
+ such that 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mu\times\pi_{0}(\omega\in\Omega:c_{t,1}(\omega)-w_{t,1}(\omega)=(\frac{\lambda_{t}(\omega)p_{t,1}(\omega)}{\alpha(\omega)})^{\frac{1}{\alpha(\omega)-1}})=1\forall t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mu\times\pi_{0}(\omega\in\Omega:c_{t,1}(\omega)-w_{t,1}(\omega)=(\frac{\lambda_{t}(\omega)p_{t,2}(\omega)}{1-\alpha(\omega)})^{-\frac{1}{\alpha(\omega)}})=1\forall t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Then the measurement error moment is known and centered around zero:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E_{\mu\times\pi_{0}}(w_{t,k})=0\forall t,k.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Collect all these previous moments into the vector of moments 
+\begin_inset Formula $g(x,e)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Theorem
+
+\series bold
+(Schennach, 2014 ECMA and Aguiar and Kashaev 2022 Restud) 
+\series default
+The following are equivalent.
+\end_layout
+
+\begin_layout Theorem
+1.
+ A random vector 
+\begin_inset Formula $\mathbf{x}=(\mathbf{p_{t},c_{t}})_{t\in\mathcal{T}}$
+\end_inset
+
+ is approximately rationalizable by a Cobb-Douglas under centered measurement
+ error.
+ 
+\end_layout
+
+\begin_layout Theorem
+2.
+ 
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Formula 
+\[
+\inf_{\mu\in\mathcal{P}_{E|X}}||E_{\mu\times\pi_{0}}[g(x,e)]||=0.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+where 
+\begin_inset Formula $\pi_{0}\in\mathcal{P}_{X}$
+\end_inset
+
+ is the observed distribution of 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+We now define a way to check (2) in a way that is computationally feasible.
+ 
+\end_layout
+
+\begin_layout Definition
+(Maximum-entropy moment) 
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula 
+\[
+h(x;\gamma)=\frac{\int_{e\in E|X}g(x,e)\exp(\gamma'g(x,e))d\eta(e|x)}{\int_{e\in E|X}\exp(\gamma'g(x,e)d\eta(e|x)},
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+where 
+\begin_inset Formula $\gamma\in\mathbb{R}^{k+q}$
+\end_inset
+
+ is a nuisance parameter, and 
+\begin_inset Formula $\eta\in\mathcal{P}_{E|X}$
+\end_inset
+
+ is an arbitrary user-input distribution supported on 
+\begin_inset Formula $E|X$
+\end_inset
+
+ such that 
+\begin_inset Formula $E_{\pi_{0}}[logE_{\eta}[\exp(\gamma'g(x,e))|x]]$
+\end_inset
+
+ exists and twice continuously differentiable in 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ for all 
+\begin_inset Formula $\gamma\in\mathbb{R}^{k+q}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Definition
+Note that 
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula 
+\[
+\{d\eta^{*}(\cdot|x;\gamma)=\frac{\exp(\gamma'g(x,\cdot))d\eta(\cdot|x)}{\int_{e\in E|X}\exp(\gamma'g(x,e)d\eta(e|x)},\gamma\in\mathbb{R}^{k+q}\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+is a family of exponential conditional probability measures.
+ Thus the maximum entropy moment 
+\begin_inset Formula $h$
+\end_inset
+
+ is the marginal moment of the function 
+\begin_inset Formula $g$
+\end_inset
+
+, at which the latent variable has been integrated out using one of the
+ members from the above exponential family.
+ We call this the Elvis distribution.
+\end_layout
+
+\begin_layout Definition
+The importance of this distribution is:
+\end_layout
+
+\begin_layout Theorem
+
+\series bold
+Theorem.
+ 
+\series default
+The following are equivalent:
+\end_layout
+
+\begin_layout Theorem
+1.
+ A random vector 
+\begin_inset Formula $\mathbf{x}=(\mathbf{p_{t},c_{t}})_{t\in\mathcal{T}}$
+\end_inset
+
+ is approximately rationalizable by a Cobb-Douglas under centered measurement
+ error.
+ 
+\end_layout
+
+\begin_layout Theorem
+2.
+ 
+\begin_inset Formula 
+\[
+\inf_{\gamma\in\mathbb{R}^{k+q}}||E_{\pi_{0}}[h(x;\gamma)]||=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+where 
+\begin_inset Formula $\pi_{0}\in\mathcal{P}_{X}$
+\end_inset
+
+ is the observed distribution over 
+\series bold
+
+\begin_inset Formula $x$
+\end_inset
+
+
+\series default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The idea or intuition behind this theorem is that there exists a distribution
+ that satisfies the moment conditions, then there must be a distribution
+ in the family of Elvis distributions, and satisfies the same moment conditions.
+ This is a finite problem after we have computed the integral with respect
+ to the Elvis distribution for a fixed 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ parameter.
+ 
+\end_layout
+
+\begin_layout Standard
+En Aguiar and Kashaev (AK 2022) hacemos un 
+\begin_inset Formula $\eta$
+\end_inset
+
+ restringido.
+ 
+\end_layout
+
+\begin_layout Standard
+En esta clase vamos primero a simular de 
+\begin_inset Formula $\eta$
+\end_inset
+
+.
 \end_layout
 
 \end_body

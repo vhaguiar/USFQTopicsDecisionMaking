@@ -6,7 +6,6 @@ import Distributions
 using CSV, DataFrames
 using Random
 using Tables
-using Distributions
 
 ## Generate a data Set
 ##parameters
@@ -53,8 +52,6 @@ p
 αp=rand(Ns)
 ##prior lambda
 λp=randexp(Ns)
-##prices, we have to know who faces each prices
-pp=zeros(Ns,K,T)
 
 ## prior consumption
 ## you have to know the model
@@ -99,7 +96,7 @@ function jump(c,p)
                     if k==2 
                         wsim[i,k,t]=co[i,k,t]-((1-αp[i])/(λp[i]*p[i,k,t]))^(1/αp[i])
                     end
-                    wsim[i,k,t]=co[i,k,t]-ctp[i,is,k,t]
+                    
                 end 
         end
         end
@@ -121,7 +118,7 @@ function myfun(gamma=gamma,w=w)
 end
 
 
-w=jump(co,p,αp,λp)
+w=jump(co,p)
 
 wc=zeros(N,K,T)
 
@@ -138,7 +135,6 @@ function gchain(gamma,co,p,wc=wc,w=w,repn=repn,chainM=chainM)
 
       @inbounds w[dum,:,:]=wc[dum,:,:]
       if r>0
-        print(myfun(gamma,w))
         chainM[:,:,r]=myfun(gamma,w)
 
       end
@@ -147,5 +143,50 @@ function gchain(gamma,co,p,wc=wc,w=w,repn=repn,chainM=chainM)
 end
 
 gamma=[1 2]
-gchain(gamma,co,p,w,wc,repn,chainM)
+gchain(gamma,co,p,wc,w,repn,chainM)
+myfun(gamma,w)
 chainM
+
+##############################################
+###Maximum Entropy Moment
+
+#Initializing vector of simulated values of g(x,e)
+n=N
+dg=K*T
+nfast=repn[2]
+geta=ones(n,dg)
+gtry=ones(n,dg)
+@inbounds geta[:,:]=chainM[:,:,1]
+# initializing integrated moment h
+dvecM=zeros(n,dg)
+# Log of uniform
+logunif=log.(rand(n,nfast))
+# Initializing gamma in CUDA
+gamma=ones(dg)
+# Initializing value for chain generation
+valf=zeros(n)
+
+# MEM MC integral
+function MEMMC(gamma,chainM,valf,geta,gtry,dvecM,logunif)
+
+
+    for i=1:n
+        for j=1:nfast
+            valf[i]=0.0
+            for t=1:dg
+                gtry[i,t]=chainM[i,t,j]
+                valf[i]+=gtry[i,t]*gamma[t]-geta[i,t]*gamma[t]
+            end
+            for t=1:dg
+                geta[i,t]=logunif[i,j] < valf[i] ? gtry[i,t] : geta[i,t]
+                dvecM[i,t]+=geta[i,t]/nfast
+            end
+        end
+    end
+    return nothing
+end
+
+
+MEMMC(gamma,chainM,valf,geta,gtry,dvecM,logunif)
+dvecM
+sum(dvecM,dims=1)./n
