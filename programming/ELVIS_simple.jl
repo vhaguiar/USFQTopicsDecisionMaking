@@ -1,7 +1,8 @@
 ###Simple illustration of ELVIS
 ## vhaguiar@gmail.com
 import JuMP
-import KNITRO
+import Ipopt
+#import KNITRO
 import Distributions
 using CSV, DataFrames
 using Random
@@ -116,7 +117,7 @@ function myfun(gamma=gamma,w=w)
              @inbounds gvec[:,4]=w[:,2,2]
         end
     end
-    gvec/10000
+    gvec/100000
 end
 
 
@@ -125,7 +126,7 @@ w=jump(co,p)
 wc=zeros(N,K,T)
 
 ## repetitions n1=burn n2=sample accept
-repn=[10,1000]
+repn=[10,100]
 chainM=zeros(N,K*T,repn[2])
 
 function gchain(gamma,co,p,wc=wc,w=w,repn=repn,chainM=chainM)
@@ -149,8 +150,8 @@ gchain(gamma,co,p,wc,w,repn,chainM)
 myfun(gamma,w)
 chainM
 chainM[isnan.(chainM)] .= 0
-chainM[isinf.(chainM) .& (chainM .> 0)] .= 10e40
-chainM[isinf.(chainM) .& (chainM .< 0)] .= -10e40
+chainM[isinf.(chainM) .& (chainM .> 0)] .= 10e300
+chainM[isinf.(chainM) .& (chainM .< 0)] .= -10e300
 ##############################################
 ###Maximum Entropy Moment
 
@@ -200,15 +201,16 @@ dvecM
 sum(dvecM,dims=1)./n
 
 ## Objective Function
-ELVIS = JuMP.Model(KNITRO.Optimizer) 
+#ELVIS = JuMP.Model(KNITRO.Optimizer) 
+ELVIS = JuMP.Model(Ipopt.Optimizer) 
 JuMP.@variable(ELVIS, gamma[1:dg])
 
 
 function ElvisGMM(gamma...)
     MEMMC(gamma)
     dvecM[isnan.(dvecM)] .= 0
-    dvecM[isinf.(dvecM) .& (dvecM .> 0)] .= 10e40
-    dvecM[isinf.(dvecM) .& (dvecM .< 0)] .= -10e40
+    dvecM[isinf.(dvecM) .& (dvecM .> 0)] .= 10e300
+    dvecM[isinf.(dvecM) .& (dvecM .< 0)] .= -10e300
     dvec=sum(dvecM,dims=1)'/n
     
     numvar=zeros(dg,dg)
@@ -217,8 +219,8 @@ function ElvisGMM(gamma...)
     end
     var=numvar+numvar'- Diagonal(diag(numvar))-dvec*dvec'
     var[isnan.(var)] .= 0
-    var[isinf.(var) .& (var .> 0)] .=10e40
-    var[isinf.(var) .& (var .< 0)] .= -10e40
+    var[isinf.(var) .& (var .> 0)] .=10e300
+    var[isinf.(var) .& (var .< 0)] .= -10e300
     (Lambda,QM)=eigen(var)
     inddummy=Lambda.>0.001
     An=QM[:,inddummy]
@@ -232,10 +234,18 @@ end
 
 JuMP.register(ELVIS,:ElvisGMM,dg,ElvisGMM;autodiff=true)
 JuMP.@NLobjective(ELVIS,Min,ElvisGMM(gamma[1],gamma[2],gamma[3],gamma[4]))
+
 JuMP.optimize!(ELVIS)
 minf=JuMP.objective_value(ELVIS)
 TSMC=2*minf*n
 Chisq=9.488
+TSMC2=10e300
+for t in 1:100
+    minf=JuMP.objective_value(ELVIS)
+    if (TSMC2>=0 && 2*minf*n<TSMC2)
+        TSMC2=2*minf*n
+    end
+end
 # degrees of freedom
 αsig = 0.05  # significance level
 
