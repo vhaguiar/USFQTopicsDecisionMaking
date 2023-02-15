@@ -250,4 +250,5 @@ end
 αsig = 0.05  # significance level
 
 # get the critical value for the chi-square distribution
-critical_value = quantile(Distributions.Chisq(4), 1 - 0.05)
+critical_value = quantile(Distributions.Chisq(4), 1 - αsig)
+TSMC2
