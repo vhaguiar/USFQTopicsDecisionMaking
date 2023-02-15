@@ -1608,20 +1608,43 @@ The idea or intuition behind this theorem is that there exists a distribution
 \end_layout
 
 \begin_layout Standard
-En Aguiar and Kashaev (AK 2022) hacemos un 
+In Aguiar and Kashaev (AK 2022) we use the following 
 \begin_inset Formula $\eta$
 \end_inset
 
- restringido.
+ that satisfies all the requirements for the theorem to work: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\eta(e|x)\propto\exp(-||g_{M}(x,e)||^{2})[1(c_{t,1}-w_{t,1}=(\frac{\lambda_{t}p_{t,1}}{\alpha})^{\frac{1}{\alpha-1}})-1\forall t][1(c_{t,2}-w_{t,2}=(\frac{\lambda_{t}p_{t,2}}{1-\alpha})^{-\frac{1}{\alpha}})-1\forall t].
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that we have included the moments of the model 
+\begin_inset Formula $g_{A}$
+\end_inset
+
+ as a support constraint on 
+\begin_inset Formula $\eta$
+\end_inset
+
+, and the only the moment 
+\begin_inset Formula $g_{M}$
+\end_inset
+
+ is used in the density.
  
 \end_layout
 
 \begin_layout Standard
-En esta clase vamos primero a simular de 
-\begin_inset Formula $\eta$
-\end_inset
 
-.
 \end_layout
 
 \end_body

@@ -6,6 +6,8 @@ import Distributions
 using CSV, DataFrames
 using Random
 using Tables
+using LinearAlgebra
+using Statistics
 
 ## Generate a data Set
 ##parameters
@@ -83,9 +85,9 @@ ctp
 wsim=zeros(N,K,T)
 
 function jump(c,p)
-    αp=rand(N)
+    αp=rand(N)./2
     ##prior lambda
-    λp=randexp(N)
+    λp=randexp(N).+1
     for is in 1:Ns 
         for i in 1:N
         for k in 1:K
@@ -114,7 +116,7 @@ function myfun(gamma=gamma,w=w)
              @inbounds gvec[:,4]=w[:,2,2]
         end
     end
-    gvec
+    gvec/10000
 end
 
 
@@ -123,14 +125,14 @@ w=jump(co,p)
 wc=zeros(N,K,T)
 
 ## repetitions n1=burn n2=sample accept
-repn=[10,100]
+repn=[10,1000]
 chainM=zeros(N,K*T,repn[2])
 
 function gchain(gamma,co,p,wc=wc,w=w,repn=repn,chainM=chainM)
     r=-repn[1]+1
     while r<=repn[2]
       wc[:,:,:]=jump(co,p);
-      logtrydens=(-(sum(wc[:,1,1].^2,dims=1)+sum(wc[:,1,2].^2,dims=1)+sum(wc[:,2,1].^2,dims=1)+sum(wc[:,2,2].^2,dims=1))+ (sum(w[:,1,1].^2,dims=1)+sum(w[:,1,2].^2,dims=1)+sum(w[:,2,1].^2,dims=1)+sum(w[:,2,2].^2,dims=1)))[:,1,1]
+      logtrydens=(-(wc[:,1,1].^2+wc[:,1,2].^2+wc[:,2,1].^2+wc[:,2,2])+ (w[:,1,1].^2+w[:,1,2].^2+w[:,2,1].^2+w[:,2,2].^2))[:,1,1]
       dum=log.(rand(N)).<logtrydens
 
       @inbounds w[dum,:,:]=wc[dum,:,:]
@@ -146,7 +148,9 @@ gamma=[1 2]
 gchain(gamma,co,p,wc,w,repn,chainM)
 myfun(gamma,w)
 chainM
-
+chainM[isnan.(chainM)] .= 0
+chainM[isinf.(chainM) .& (chainM .> 0)] .= 10e40
+chainM[isinf.(chainM) .& (chainM .< 0)] .= -10e40
 ##############################################
 ###Maximum Entropy Moment
 
@@ -167,15 +171,17 @@ gamma=ones(dg)
 valf=zeros(n)
 
 # MEM MC integral
-function MEMMC(gamma,chainM,valf,geta,gtry,dvecM,logunif)
-
+function MEMMC(gamma...)
+    #gamma1=[gamma[1] gamma[2] gamma[3] gamma[4]]'
 
     for i=1:n
         for j=1:nfast
             valf[i]=0.0
             for t=1:dg
                 gtry[i,t]=chainM[i,t,j]
-                valf[i]+=gtry[i,t]*gamma[t]-geta[i,t]*gamma[t]
+                valf[i]+=gtry[i,t]*gamma1[t]-geta[i,t]*gamma1[t]
+                #valf[i]+=gtry[i,t]*([gamma[1] gamma[2] gamma[3] gamma[4]]')[t]-geta[i,t]*([gamma[1] gamma[2] gamma[3] gamma[4]]')[t]
+                #println("t=", t, ", i=", i, ", j=", j)
             end
             for t=1:dg
                 geta[i,t]=logunif[i,j] < valf[i] ? gtry[i,t] : geta[i,t]
@@ -187,6 +193,51 @@ function MEMMC(gamma,chainM,valf,geta,gtry,dvecM,logunif)
 end
 
 
-MEMMC(gamma,chainM,valf,geta,gtry,dvecM,logunif)
+
+gamma1=ones(dg)
+MEMMC(gamma1)
 dvecM
 sum(dvecM,dims=1)./n
+
+## Objective Function
+ELVIS = JuMP.Model(Ipopt.Optimizer) 
+JuMP.@variable(ELVIS, gamma[1:dg])
+
+
+function ElvisGMM(gamma...)
+    MEMMC(gamma)
+    dvecM[isnan.(dvecM)] .= 0
+    dvecM[isinf.(dvecM) .& (dvecM .> 0)] .= typemax(Float64)
+    dvecM[isinf.(dvecM) .& (dvecM .< 0)] .= -typemax(Float64)
+    dvec=sum(dvecM,dims=1)'/n
+    
+    numvar=zeros(dg,dg)
+    @simd for i=1:n
+        BLAS.syr!('U',1.0/n,dvecM[i,:],numvar)
+    end
+    var=numvar+numvar'- Diagonal(diag(numvar))-dvec*dvec'
+    var[isnan.(var)] .= 0
+    var[isinf.(var) .& (var .> 0)] .= typemax(Float64)
+    var[isinf.(var) .& (var .< 0)] .= -typemax(Float64)
+    (Lambda,QM)=eigen(var)
+    inddummy=Lambda.>0.001
+    An=QM[:,inddummy]
+    dvecdum2=An'*(dvec)
+    vardum3=An'*var*An
+    Omega2=inv(vardum3)
+    Qn2=1/2*dvecdum2'*Omega2*dvecdum2
+
+    return Qn2[1]
+end
+
+JuMP.register(ELVIS,:ElvisGMM,dg,ElvisGMM;autodiff=true)
+JuMP.@NLobjective(ELVIS,Min,ElvisGMM(gamma[1],gamma[2],gamma[3],gamma[4]))
+JuMP.optimize!(ELVIS)
+minf=JuMP.objective_value(ELVIS)
+TSMC=2*minf*n
+Chisq=9.488
+# degrees of freedom
+αsig = 0.05  # significance level
+
+# get the critical value for the chi-square distribution
+critical_value = quantile(Distributions.Chisq(4), 1 - 0.05)
