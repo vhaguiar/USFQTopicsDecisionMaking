@@ -126,7 +126,7 @@ w=jump(co,p)
 wc=zeros(N,K,T)
 
 ## repetitions n1=burn n2=sample accept
-repn=[10,100]
+repn=[10,1000]
 chainM=zeros(N,K*T,repn[2])
 
 function gchain(gamma,co,p,wc=wc,w=w,repn=repn,chainM=chainM)
@@ -244,8 +244,9 @@ TSMC2=10e300
 ## In the current implementation of JUMP of 1.8 this is the case, we have to manually change the starting points if this is not longer true
 ## We take the minimum of the TSMC conditional on being numerically feasible, negative values are due to numerical instability
 for t in 1:100
+    JuMP.optimize!(ELVIS)
     minf=JuMP.objective_value(ELVIS)
-    if (TSMC2>=0 && 2*minf*n<TSMC2)
+    if (minf>=0 && 2*minf*n<TSMC2)
         TSMC2=2*minf*n
     end
 end
