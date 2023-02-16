@@ -240,6 +240,9 @@ minf=JuMP.objective_value(ELVIS)
 TSMC=2*minf*n
 Chisq=9.488
 TSMC2=10e300
+##Global optimization in general is hard, we can do a 100 optimizations with different starting points
+## In the current implementation of JUMP of 1.8 this is the case, we have to manually change the starting points if this is not longer true
+## We take the minimum of the TSMC conditional on being numerically feasible, negative values are due to numerical instability
 for t in 1:100
     minf=JuMP.objective_value(ELVIS)
     if (TSMC2>=0 && 2*minf*n<TSMC2)
@@ -252,3 +255,4 @@ end
 # get the critical value for the chi-square distribution
 critical_value = quantile(Distributions.Chisq(4), 1 - αsig)
 TSMC2
+## In this case we cannot reject the null as it should be. 
