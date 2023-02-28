@@ -1725,8 +1725,101 @@ Suppose
 \end_inset
 
  is i.i.d.
- and the previous assumptions hold then under the  the data is rationalizable
- i
+ and the previous assumptions hold then under the null that the data is
+ rationalizable it follows that
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Formula 
+\[
+lim_{n\rightarrow\infty}Pr(TS_{n}>\chi_{q,1-\alpha}^{2})\leq\alpha
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+for every 
+\begin_inset Formula $\alpha\in(0,1)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Theorem
+If moreover the minimal eigenvalue of the variance matrix 
+\begin_inset Formula $V[h_{M}(x,\gamma)]$
+\end_inset
+
+ is uniformly, in 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, bounded away from zero and its maximal eigenvalue is uniformly, in 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, bounded from above, then under the alternative hypothesis that the data
+ is not approximately consistent with rationalizability, it follows that
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Formula 
+\[
+lim_{n\rightarrow\infty}P(TS_{n}>\chi_{q,1-\alpha})=1.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now we can do some recoverability of parameters of interests by test-inversion.
+ 
+\end_layout
+
+\begin_layout Standard
+The 
+\begin_inset Formula $(1-\alpha)$
+\end_inset
+
+-confidence set for 
+\begin_inset Formula $\theta_{0}$
+\end_inset
+
+ is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\{\theta_{0}\in\Theta:TS_{n}(\theta_{0})\leq\chi_{q_{ext},1-\alpha}^{2}\}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that 
+\begin_inset Formula $q_{ext}=q+d$
+\end_inset
+
+ where 
+\begin_inset Formula $d$
+\end_inset
+
+ is the number of new parameters introduced in the problem.
+ 
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \end_body
