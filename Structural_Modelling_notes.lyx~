@@ -1643,5 +1643,143 @@ Note that we have included the moments of the model
  
 \end_layout
 
+\begin_layout Section
+Simulated GMM and Testing
+\end_layout
+
+\begin_layout Standard
+The data is 
+\begin_inset Formula $\{x_{i}\}_{i=1}^{n}=\{(p_{t,i},c_{t,i})_{t\in\mathcal{T}}\}_{i=1}^{n}$
+\end_inset
+
+ where 
+\begin_inset Formula $n$
+\end_inset
+
+ is the sample size.
+ The sample analogue of 
+\begin_inset Formula $h$
+\end_inset
+
+ is 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{h}_{M}(\gamma)=\frac{1}{n}\sum_{i=1}^{n}h_{M}(x_{i},\gamma)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{\Omega}(\gamma)=\frac{1}{n}\sum_{i=1}^{n}h_{M}(x_{i},\gamma)h_{M}(x_{i},\gamma)'-\hat{h}_{M}(\gamma)\hat{h}_{M}(\gamma)'.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We let 
+\begin_inset Formula $\Omega^{-}$
+\end_inset
+
+ be the generalized inverse of matrix 
+\begin_inset Formula $\Omega$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+TS_{n}=n\inf_{\gamma\in\mathbb{R}^{q}}\hat{h}_{M}(\gamma)\hat{\Omega}^{-}(\gamma)\hat{h}_{M}(\gamma).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We assume that 
+\begin_inset Formula $\{x_{i}\}_{i=1}^{n}$
+\end_inset
+
+ is i.i.d.
+ 
+\end_layout
+
+\begin_layout Theorem
+Suppose 
+\begin_inset Formula $\{x_{i}\}_{i=1}^{n}$
+\end_inset
+
+ is i.i.d.
+ and the previous assumptions hold then under the null that the data is
+ rationalizable it follows that
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Formula 
+\[
+lim_{n\rightarrow\infty}Pr(TS_{n}>\chi_{q,1-\alpha}^{2})\leq\alpha
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+for every 
+\begin_inset Formula $\alpha\in(0,1)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Theorem
+If moreover the minimal eigenvalue of the variance matrix 
+\begin_inset Formula $V[h_{M}(x,\gamma)]$
+\end_inset
+
+ is uniformly, in 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, bounded away from zero and its maximal eigenvalue is uniformly, in 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, bounded from above, then under the alternative hypothesis that the data
+ is not approximately consistent with rationalizability, it follows that
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Formula 
+\[
+lim_{n\rightarrow\infty}P(TS_{n}>\chi_{q,1-\alpha})=1.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
 \end_body
 \end_document
