@@ -1818,6 +1818,482 @@ Note that
  
 \end_layout
 
+\begin_layout Section
+Alternatives to ELVIS: Support approaches (Li and Potoms and DeMuynck: Testing
+ revealed preference models with unobserved randomness: a column generation
+ approach).
+ 
+\end_layout
+
+\begin_layout Standard
+Observables in 
+\begin_inset Formula $y$
+\end_inset
+
+ with support 
+\begin_inset Formula $\mathcal{Y}\subseteq\mathbb{R}^{d_{Y}}$
+\end_inset
+
+.
+ Unobservables are collected in 
+\begin_inset Formula $u$
+\end_inset
+
+ with support 
+\begin_inset Formula $\mathcal{U}\subseteq\mathbb{R}^{d_{U}}$
+\end_inset
+
+.
+ The unknown joint distribution over observables and unobservables 
+\begin_inset Formula $(y,u)$
+\end_inset
+
+ is 
+\begin_inset Formula $\mu$
+\end_inset
+
+ on some measure space 
+\begin_inset Formula $(\mathcal{Y}\times\mathcal{U},\mathcal{B})$
+\end_inset
+
+ where 
+\begin_inset Formula $\mathcal{B}$
+\end_inset
+
+ is the Borel 
+\begin_inset Formula $\sigma$
+\end_inset
+
+-algebra on 
+\begin_inset Formula $\mathcal{Y}\times\mathcal{U}\subseteq\mathbb{R}^{d_{U}+d_{Y}}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Definition
+A model consists of a tuple 
+\begin_inset Formula $(\mu_{Y},\Gamma,f,\alpha)$
+\end_inset
+
+, where 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mu_{Y}$
+\end_inset
+
+ is the marginal probability measure with respect to observables, 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\Gamma\subseteq\mathcal{Y}\times\mathcal{U}$
+\end_inset
+
+ is a 
+\begin_inset Formula $\mathcal{B}$
+\end_inset
+
+-measurable set that gives all combinations 
+\begin_inset Formula $(y,u)\in\mathcal{Y}\times\mathcal{U}$
+\end_inset
+
+ that are consistent with the economic model.
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f:\mathcal{Y}\times\mathcal{U}\to\mathbb{R}^{K}$
+\end_inset
+
+ gives a vector of measurable functions 
+\begin_inset Formula $f=(f^{1},\cdots,f^{K})$
+\end_inset
+
+ that govern the moment conditions imposed by the economic model 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\alpha=(\alpha^{1},\cdots,\alpha^{K})\in\mathbb{R}^{K}$
+\end_inset
+
+ is a 
+\begin_inset Formula $K$
+\end_inset
+
+-dimensional vector of moment values for these functions.
+ 
+\end_layout
+
+\begin_layout Standard
+The marginal distribution 
+\begin_inset Formula $\mu_{Y}$
+\end_inset
+
+ corresponds with the joint
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\mu_{Y}(A)=\mu(A\times\mathcal{U}).
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We know that 
+\begin_inset Formula $\Gamma$
+\end_inset
+
+ encompasses all possible values of 
+\begin_inset Formula $(y,u)$
+\end_inset
+
+ that can arise in the model 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\mu(\Gamma)=1.
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Also the moment conditions are taken with respect to 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and the support 
+\begin_inset Formula $\Gamma$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E_{\mu}f^{k}=\int_{\Gamma}f^{k}(y,u)d\mu=\alpha^{k}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+E_{\mu}f=\alpha.
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The problem is to find a 
+\begin_inset Formula $\mu$
+\end_inset
+
+ is any such that 1-3 hold.
+ 
+\end_layout
+
+\begin_layout Standard
+Now define 
+\begin_inset Formula $\mathcal{H}(\mu_{Y},\Gamma)$
+\end_inset
+
+ as the collection of all feasible distributions 
+\begin_inset Formula $\mu$
+\end_inset
+
+ such that 1-2.
+ Define the correspondence 
+\begin_inset Formula $F:\mathcal{Y}\rightrightarrows\mathbb{R}^{K}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+F(y)=\{f(y,u):(y,u)\in\Gamma\}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that since 
+\begin_inset Formula $y$
+\end_inset
+
+ is random 
+\begin_inset Formula $F(y)$
+\end_inset
+
+ is a random set with support on subsets of 
+\begin_inset Formula $\mathbb{R}^{K}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Assumption*
+(PD-2) (i) The sets 
+\begin_inset Formula $F(y)$
+\end_inset
+
+ are closed 
+\begin_inset Formula $\mu_{Y}-a.s.$
+\end_inset
+
+ (ii) There is a measurable function 
+\begin_inset Formula $g(y)$
+\end_inset
+
+ that only depends on 
+\begin_inset Formula $y$
+\end_inset
+
+ such that 
+\begin_inset Formula $E_{\mu}g(y)<\infty$
+\end_inset
+
+ and: 
+\begin_inset Formula $g(y)\geq\sup_{(y,u)\in\Gamma}||f(y,u)||$
+\end_inset
+
+ 
+\begin_inset Formula $\mu_{Y}-a.s.$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The problem can be rewritten as 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\min_{\mu\in\mathcal{H}(\mu_{Y},\Gamma)}E_{\mu}||f(y,u)-\alpha||=0,
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $||\cdot||$
+\end_inset
+
+ is the Euclidean norm in 
+\begin_inset Formula $\mathbb{R}^{K}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+We define a support function.
+ For a compact set 
+\begin_inset Formula $A\subseteq\mathbb{R}^{K}$
+\end_inset
+
+, the support function of 
+\begin_inset Formula $A$
+\end_inset
+
+, 
+\begin_inset Formula $h_{A}:\mathbb{R}^{K}\to\mathbb{R}$
+\end_inset
+
+ is given by:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+h_{A}(\lambda)=\sup_{x\in A}<\lambda,x>,
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $<\cdot,\cdot>$
+\end_inset
+
+ denotes the inner product.
+ Let 
+\begin_inset Formula $co(A)$
+\end_inset
+
+ be convex hull of 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $\overline{co}(A)$
+\end_inset
+
+ the convex, closed closure of 
+\begin_inset Formula $A$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\overline{co}(A)=\{x\in\mathbb{R}^{K}:\forall\lambda\in\mathbb{S}^{K},<\lambda,x>\leq h_{A}(\lambda)\},
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\mathbb{S}^{K}=\{\lambda\in\mathbb{R}^{K}:||\lambda||=1\}$
+\end_inset
+
+is the 
+\begin_inset Formula $K-1$
+\end_inset
+
+ dimensional unit simplex.
+ 
+\end_layout
+
+\begin_layout Standard
+If (3) is satisfied then by linearity of the expectation:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E_{\mu}<\lambda,f(y,u)>=<\lambda,\alpha>\forall\lambda\in\mathbb{S}^{K}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now by (2)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mu(\{(y,u)\in\Gamma:<\lambda,f(y,u)>\leq h_{F(y)}(\lambda)\})=1,
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+combining the conditions above we obtain
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E_{\mu}[h_{F(y)}(\lambda)]\geq E_{\mu}<\lambda,f(y,u)>=<\lambda,\alpha>\forall\lambda\in\mathbb{S}^{K}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Notice that
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E_{\mu}[h_{F(y)}(\lambda)]=E_{\mu_{Y}}[h_{F(y)}(\lambda)],
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+then
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E_{\mu_{Y}}[h_{F(y)}(\lambda)]\geq<\lambda,\alpha>\forall\lambda\in\mathbb{S}^{K}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem*
+(Li-3) If Assumption PT-2 holds, then 
+\begin_inset Formula $\min_{\mu\in\mathcal{H}(\mu_{Y},\Gamma)}E_{\mu}||f(y,u)-\alpha||=0,$
+\end_inset
+
+ holds iff 
+\end_layout
+
+\begin_layout Theorem*
+\begin_inset Formula 
+\[
+\inf_{\lambda\in\mathbb{S}^{K}}E_{\mu_{Y}}[h_{F(y)}(\lambda)-<\lambda,\alpha>]\geq0.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is an alternative to ELVIS and characterizes the sharp identified regions
+ for partially identified econometric models.
+ 
+\end_layout
+
 \begin_layout Standard
 
 \end_layout
