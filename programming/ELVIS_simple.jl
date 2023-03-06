@@ -184,7 +184,9 @@ function MEMMC(gamma...)
             valf[i]=0.0
             for t=1:dg
                 gtry[i,t]=chainM[i,t,j]
-                valf[i]+=gtry[i,t]*gamma1[t]-geta[i,t]*gamma1[t]
+                #valf[i]+=gtry[i,t]*gamma1[t]-geta[i,t]*gamma1[t]
+                ## change the line below replacing wc[:,1,1] by gtry[i,t]
+                valf[i]+=gtry[i,t]*gamma1[t]-geta[i,t]*gamma1[t] -(gtry[i,t]*gtry[i,t])+ (gtry[i,t]*gtry[i,t])
                 #valf[i]+=gtry[i,t]*([gamma[1] gamma[2] gamma[3] gamma[4]]')[t]-geta[i,t]*([gamma[1] gamma[2] gamma[3] gamma[4]]')[t]
                 #println("t=", t, ", i=", i, ", j=", j)
             end
