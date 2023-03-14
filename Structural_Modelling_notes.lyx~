@@ -2513,8 +2513,19 @@ where
 \begin_inset Formula $X$
 \end_inset
 
+, 
+\begin_inset Formula $\mu^{*}\in\Delta(\mathbb{\mathcal{R}})$
+\end_inset
+
+, 
+\begin_inset Formula $\mu^{*}(\succ)\geq0$
+\end_inset
+
+ and 
+\begin_inset Formula $\sum_{\succ\in\mathcal{R}}\mu^{*}(\succ)=1$
+\end_inset
+
 .
- 
 \end_layout
 
 \begin_layout Standard
@@ -2523,7 +2534,7 @@ After discretization, without loss of generality, we can write
 \end_inset
 
  and 
-\begin_inset Formula $\rho=(6\rho_{j})_{j\in J}$
+\begin_inset Formula $\rho=(\rho_{j})_{j\in J}$
 \end_inset
 
 .
@@ -2613,7 +2624,7 @@ We let
 \begin_inset Formula $u:X\to\mathbb{R}$
 \end_inset
 
- that are concave, continuous and monotone.
+ that are strictly (quasi)concave, continuous and monotone.
  We let 
 \begin_inset Formula $O$
 \end_inset
@@ -3167,8 +3178,15 @@ nt of preferences.
  In reality this assumption may be broken in survey data where different
  individuals may have preferences (e.g., risk aversion parameter) that is
  correlated with income.
- We will have to deal with this using techniques that deals with this form
- of endogeneity.
+ We will have to deal with this using techniques that can 
+\begin_inset Quotes eld
+\end_inset
+
+fix
+\begin_inset Quotes erd
+\end_inset
+
+  this form of endogeneity.
  After discretization we can write down a discrete type space 
 \begin_inset Formula $\mathcal{R}$
 \end_inset
@@ -3525,6 +3543,19 @@ If
 
 \begin_layout Subsubsection
 Simulating a Critical Value
+\end_layout
+
+\begin_layout Standard
+We need to obtain 
+\begin_inset Formula $\hat{\rho}^{*(b)}$
+\end_inset
+
+ for 
+\begin_inset Formula $b=1,\cdots,B$
+\end_inset
+
+, bootstrap sample.
+ 
 \end_layout
 
 \begin_layout Standard
