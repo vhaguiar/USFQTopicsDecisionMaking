@@ -123,7 +123,7 @@ theorems-ams-extended-bytype
 \begin_body
 
 \begin_layout Title
-Computational Economics: Topics on Decision Making
+Topics on Decision Making
 \end_layout
 
 \begin_layout Author
@@ -3997,25 +3997,6 @@ Let
 \end_inset
 
  satisfies GARP.
-\end_layout
-
-\begin_layout Standard
-This is powerful because we can apply the mixture techniques here using
- the normalized patches, we can essentially do RUM for demand with endogenous
- expenditure.
- 
-\end_layout
-
-\begin_layout Part
-Machine Learning
-\end_layout
-
-\begin_layout Section
-Neural Networks
-\end_layout
-
-\begin_layout Standard
-
 \end_layout
 
 \end_body

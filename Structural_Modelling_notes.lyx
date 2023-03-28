@@ -123,7 +123,7 @@ theorems-ams-extended-bytype
 \begin_body
 
 \begin_layout Title
-Topics on Decision Making
+Computational Economics: Topics on Decision Making
 \end_layout
 
 \begin_layout Author
@@ -3049,7 +3049,7 @@ no
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Rational Types
+Rational Types.
 \end_layout
 
 \end_inset
@@ -3669,6 +3669,1077 @@ for all
 
 .
  
+\end_layout
+
+\begin_layout Subsection
+Dealing with Endogeneity in the Demand Setup (Paper Reference: Revealed
+ Price Preference: Theory and Empirical Analysis).
+ 
+\end_layout
+
+\begin_layout Standard
+This paper introduces a new model of consumption.
+ 
+\end_layout
+
+\begin_layout Definition
+Augmented Utility Functions: Consider 
+\begin_inset Formula $\mathcal{D}=\{p^{t},x^{t}\}_{t=1}^{T}$
+\end_inset
+
+, from a consumer, each observation consists of the prices 
+\begin_inset Formula $p^{t}\in\mathbb{R}_{++}^{L}$
+\end_inset
+
+ of the 
+\begin_inset Formula $L$
+\end_inset
+
+ goods, and the consumer demands 
+\begin_inset Formula $x^{t}\in\mathbb{R}_{+}^{L}$
+\end_inset
+
+ at those prices.
+ We have an augmented utility 
+\begin_inset Formula $U:X\times\mathbb{R}_{-}\to\mathbb{R}$
+\end_inset
+
+, that (
+\begin_inset Formula $X=\mathbb{R}_{+}^{L}$
+\end_inset
+
+) rationalizes 
+\begin_inset Formula $\mathcal{D}$
+\end_inset
+
+ in the following sense:
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula 
+\[
+x^{t}\in argmax_{x\in X}U(x,-p^{t\prime}x)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+for all 
+\begin_inset Formula $t=1,\cdots,T$
+\end_inset
+
+.
+ We assume that this 
+\begin_inset Formula $U$
+\end_inset
+
+ is monotone on the arguments.
+ 
+\end_layout
+
+\begin_layout Standard
+Note that we can define the value function of the problem above that is
+ indirect utility over prices: 
+\begin_inset Formula $V:\mathbb{R}_{++}^{L}\to\mathbb{R}$
+\end_inset
+
+, 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+V(p^{t})=max_{x\in X}U(x,-p^{t\prime}x).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is an expenditure-augmented utility function, where 
+\begin_inset Formula $U(x,-e)$
+\end_inset
+
+ is the consumer's utility when she acquires 
+\begin_inset Formula $x$
+\end_inset
+
+ at the cost 
+\begin_inset Formula $e$
+\end_inset
+
+.
+ This means that expenditure is endogenous and dependent on prices.
+ 
+\end_layout
+
+\begin_layout Standard
+Special case is the quasilinear model:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+U(x,-p^{t\prime}x)=u(x)-p'x.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can have also nonseparable models:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+U(x,-p^{t\prime}x)=
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consider the new price preference revelation:
+\end_layout
+
+\begin_layout Standard
+We say that 
+\begin_inset Formula $p^{s}$
+\end_inset
+
+ is directly (strictly) revealed preferred to 
+\begin_inset Formula $p^{t}$
+\end_inset
+
+ (
+\begin_inset Formula $p^{s}\succeq_{p}(\succ_{p})p^{t}$
+\end_inset
+
+) if 
+\begin_inset Formula $p^{s\prime}x^{t}\leq(<)p^{t\prime}x^{t}=e^{t}$
+\end_inset
+
+ (note that 
+\begin_inset Formula $p^{s}\succeq_{p}(\succ_{p})p^{t})\implies$
+\end_inset
+
+
+\begin_inset Formula $V(p^{s})\geq(>)V(p^{t}$
+\end_inset
+
+) when 
+\begin_inset Formula $\mathcal{D}$
+\end_inset
+
+ are rationalized by a Augmented Utility).
+ Then we define indirect price preference 
+\begin_inset Formula $p^{s}\succeq_{p}^{*}p^{t}$
+\end_inset
+
+ if there is a finite sequence 
+\begin_inset Formula $k,r,l,\cdots,n$
+\end_inset
+
+, 
+\begin_inset Formula $p^{s}\succeq_{p}p^{k}\succeq_{p}p^{r}\succeq_{p}p^{l}\succeq_{p}\cdots p^{n}\succeq_{p}p^{t}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Definition
+Generalized Axiom of Price Revealed Preference (GAPP).
+ We say that 
+\begin_inset Formula $\mathcal{D}=\{p^{t},x^{t}\}_{t=1}^{T}$
+\end_inset
+
+ satisfies GAPP if there is no 
+\begin_inset Formula $s,t$
+\end_inset
+
+ such that 
+\begin_inset Formula $p^{s}\succeq_{p}^{*}p^{t}$
+\end_inset
+
+ and 
+\begin_inset Formula $p^{t}\succ_{p}p^{s}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Theorem
+Given a data set 
+\begin_inset Formula $\mathcal{D}=\{(p^{t},x^{t})\}_{t=1}^{T}$
+\end_inset
+
+, the following are equivalent:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\mathcal{D}$
+\end_inset
+
+ is rationalized by an augmented utility function.
+ 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\mathcal{D}$
+\end_inset
+
+ satisfies GAPP.
+ 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\mathcal{D}$
+\end_inset
+
+ is rationalized by an augmented utility function that is strictly increasing,
+ continuous, and concave.
+ Moreover, 
+\begin_inset Formula $U$
+\end_inset
+
+ is such that there is always a maximum for all 
+\begin_inset Formula $p\in\mathbb{R}_{++}^{L}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+We that the Generalized Axiom of Revealed Preference (GARP).
+ We say that 
+\begin_inset Formula $x^{t}$
+\end_inset
+
+ is directly (strictly) revealed preferred to 
+\begin_inset Formula $x^{s}$
+\end_inset
+
+ (
+\begin_inset Formula $x^{t}\succeq_{x}x^{s})$
+\end_inset
+
+ whenever 
+\begin_inset Formula $p^{t\prime}x^{t}\geq(>)p^{t\prime}x^{s}$
+\end_inset
+
+.
+ We define the indirect commodity revealed preference completely analogous
+ to the case of the price preference such that we have 
+\begin_inset Formula $x^{t}\succeq_{x}^{*}x^{s}$
+\end_inset
+
+ when there is a chain of direct revelation.
+ 
+\end_layout
+
+\begin_layout Definition
+GARP.
+ We say that 
+\begin_inset Formula $\mathcal{D}=\{p^{t},x^{t}\}_{t=1}^{T}$
+\end_inset
+
+ satisfies GARP if there is no 
+\begin_inset Formula $s,t$
+\end_inset
+
+ such that 
+\begin_inset Formula $x^{t}\succeq_{p}^{*}x^{s}$
+\end_inset
+
+ and 
+\begin_inset Formula $p^{s}\succ_{p}p^{t}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proposition
+Let 
+\begin_inset Formula $\mathcal{D}=\{p^{t},x^{t}\}_{t=1}^{T}$
+\end_inset
+
+ be a data set and let 
+\begin_inset Formula $\mathcal{D}^{*}=\{p^{t},x^{t*}\}_{t=1}^{T}$
+\end_inset
+
+ such that 
+\begin_inset Formula $x^{t*}=\frac{x^{t}}{p^{t\prime}x^{t}}$
+\end_inset
+
+.
+ Then 
+\end_layout
+
+\begin_layout Proposition
+\begin_inset Formula $\mathcal{D}$
+\end_inset
+
+ satisfies GAPP if and only if 
+\begin_inset Formula $\mathcal{D}^{*}$
+\end_inset
+
+ satisfies GARP.
+\end_layout
+
+\begin_layout Standard
+This is powerful because we can apply the mixture techniques here using
+ the normalized patches, we can essentially do RUM for demand with endogenous
+ expenditure.
+ 
+\end_layout
+
+\begin_layout Part
+Machine Learning
+\end_layout
+
+\begin_layout Section
+Deep Feedforward Networks
+\end_layout
+
+\begin_layout Standard
+Deep forward networks, or feedforward neural networks (DFNN), are the 
+\series bold
+quintessential 
+\series default
+model of 
+\series bold
+deep learning
+\series default
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Objective: Approximate a function 
+\begin_inset Formula $f^{*}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+For discrete choice, 
+\begin_inset Formula $y=f^{*}(x)$
+\end_inset
+
+ where an input 
+\begin_inset Formula $x$
+\end_inset
+
+ (features/attributes) is mapped into a category or choice 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+A DFNN is a model, defined by a mapping:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y=f(x,\theta),
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\theta$
+\end_inset
+
+ is a parameter.
+ The objective of DFNN is to learn the value of 
+\begin_inset Formula $\theta$
+\end_inset
+
+ that results in the best approximation of the observed instances of 
+\begin_inset Formula $f^{*}$
+\end_inset
+
+ (dataset).
+ 
+\end_layout
+
+\begin_layout Itemize
+Defining features: 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+DFNN are called 
+\series bold
+feedforward 
+\series default
+because information flows through the function being evaluated from 
+\begin_inset Formula $x$
+\end_inset
+
+, through the intermediate computations used to define 
+\begin_inset Formula $f$
+\end_inset
+
+, and finally the output 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ No feedback is allowed.
+ Counterexample: 
+\begin_inset Formula $y_{t}=f(y_{t-1},x_{t},\theta)$
+\end_inset
+
+ for 
+\begin_inset Formula $t\in\{1,2\}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+DFNN are called 
+\series bold
+neural 
+\series default
+because they are loosely inspired by biological neurons.
+ Modernly, they do not try to model a biological brain.
+ 
+\end_layout
+
+\begin_layout Enumerate
+DFNN are called 
+\series bold
+networks 
+\series default
+because they are typically represented by composing many different functions.
+ The model is associated with a 
+\series bold
+directed acyclical graph
+\series default
+ describing how functions are composed together: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f(x)=(f^{d}\circ f^{d-1}\cdots f^{3}\circ f^{2}\circ f^{1})(x),
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\circ$
+\end_inset
+
+ denotes function composition, 
+\begin_inset Formula $f^{1}$
+\end_inset
+
+ is called the 
+\series bold
+first layer
+\series default
+ of the network, 
+\begin_inset Formula $f^{2}$
+\end_inset
+
+ is called the 
+\series bold
+second layer 
+\series default
+and so on.
+ The overall length of the chain, 
+\begin_inset Formula $d$
+\end_inset
+
+, denotes the 
+\series bold
+depth 
+\series default
+of the model.
+ (Deep learning!).
+ The final layer 
+\begin_inset Formula $f^{d}$
+\end_inset
+
+ is called the 
+\series bold
+output layer.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Neural network training tries to match 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ to 
+\begin_inset Formula $f^{*}(x)$
+\end_inset
+
+.
+ The training data provides us with 
+\series bold
+noisy 
+\series default
+instances of 
+\begin_inset Formula $f^{*}(x)$
+\end_inset
+
+.
+ Namely, 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y\simeq f^{*}(x).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+There is no information about the behavior of each 
+\series bold
+hidden layer.
+ 
+\series default
+The dimensionality of each these hidden layers determines the 
+\series bold
+width 
+\series default
+of the model.
+ 
+\end_layout
+
+\begin_layout Itemize
+Each entry of the vector 
+\begin_inset Formula $x=(x_{k})_{k=1}^{K}\in X\subseteq\mathbb{R}^{K}$
+\end_inset
+
+ can be thought as a 
+\series bold
+neuron.
+ 
+\end_layout
+
+\begin_layout Itemize
+Each layer is a vector valued function 
+\begin_inset Formula $f^{1}:X\to X^{2}$
+\end_inset
+
+, and 
+\begin_inset Formula $f^{n}:X^{n-1}\to X^{n}=Y$
+\end_inset
+
+, where 
+\begin_inset Formula $y\in Y$
+\end_inset
+
+.
+ Then the entry 
+\begin_inset Formula $f_{l}^{1}(x)$
+\end_inset
+
+ can be thought as a neuron, that is 
+\series bold
+activated 
+\series default
+by receiving information.
+ Each entry represents a neuron processing one aspect of this information.
+ 
+\end_layout
+
+\begin_layout Example
+Linear Probability Model.
+ 
+\begin_inset Formula $y\in\{0,1\}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+y=f^{1}(x)=x'w+b,
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+where 
+\begin_inset Formula $\theta=(w,b)$
+\end_inset
+
+, where 
+\begin_inset Formula $w$
+\end_inset
+
+ are called 
+\series bold
+weights, 
+\series default
+and 
+\begin_inset Formula $b$
+\end_inset
+
+ are called 
+\series bold
+biases.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+Logit Probability Model.
+ 
+\begin_inset Formula $y\in\{0,1\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+y=(f^{2}\circ f^{1})(x)=\frac{1}{1+exp(x'w+b)},
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+where 
+\begin_inset Formula $\theta=(w,b)$
+\end_inset
+
+, where 
+\begin_inset Formula $w$
+\end_inset
+
+ are called 
+\series bold
+weights, 
+\series default
+and 
+\begin_inset Formula $b$
+\end_inset
+
+ are called 
+\series bold
+biases, 
+\series default
+and 
+\begin_inset Formula $f^{2}(z)=\frac{1}{1+exp(z)}$
+\end_inset
+
+ is the logit 
+\series bold
+activation function.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+Mixed Logit Model.
+ 
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+y=f^{3}\circ f^{2}\circ f^{1}(x)=\sum_{w\in W}w^{2}(w)\frac{1}{1+exp(x'w+b)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+Closed form solution to the XOR function.
+ Consider the XOR function that is defined as 
+\begin_inset Formula $f(1,1)=f(0,0)=0$
+\end_inset
+
+ and 
+\begin_inset Formula $f(1,0)=f(0,1)=1$
+\end_inset
+
+.
+ The vector of features 
+\begin_inset Formula $x=(x_{1},x_{2})$
+\end_inset
+
+ is a vector of binary variables.
+ We have the following four points 
+\begin_inset Formula $\mathbb{X}=\{[0,0]',[0,1]',[1,0]',[1,1]'\}$
+\end_inset
+
+.
+ We will train a DFNN on this points to learn 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Example
+We define a loss function MSE:
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+J(\theta)=\frac{1}{4}\sum_{x\in\mathbb{X}}(f^{*}(x)-f(x,\theta))^{2}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+Now we must 
+\series bold
+choose the model 
+\begin_inset Formula $f(x,\theta)$
+\end_inset
+
+.
+ 
+\series default
+Suppose that we choose first a linear model 
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+f(x;w,b)=x'w+b.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+We can minimize 
+\begin_inset Formula $J(\theta)$
+\end_inset
+
+ to obtain the solution and it will be 
+\begin_inset Formula $w=0,b=\frac{1}{2}$
+\end_inset
+
+.
+ This linear model is such that 
+\begin_inset Formula $f(x;0,\frac{1}{2})=\frac{1}{2}$
+\end_inset
+
+ for all 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Example
+Now let's agument the depth of this DFNN, so let's creat a first layer with
+ two hidden components this is captured by 
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+h=f^{1}(x;W,c)=WX+c,
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+where 
+\begin_inset Formula $f^{1}:X\to\mathbb{R}^{2}$
+\end_inset
+
+, and 
+\begin_inset Formula $h$
+\end_inset
+
+ represents the hidden units.
+ Then we have an output layer 
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+y=f^{2}(h;w,b),
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula $f^{2}:\mathbb{R}^{2}\to\mathbb{R}_{+}$
+\end_inset
+
+ we need 
+\begin_inset Formula $h^{2}$
+\end_inset
+
+ to be nonlinear to learn XOR so we use an activation function.
+ A general recommendation is the rectifier linear unit ReLU such that 
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+g(z)=\max\{0,z\},
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+that is applied elementwise to a vector and denoted for simplicity with
+ this notation.
+ Then allowing also weights and biases will give us the full neural net:
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+f(x;W,c,w,b)=f^{2}\circ f^{1}(x,\theta)=w'\max\{0,W'x+c\}+b.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+The solution to this problem is:
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+W=\left[\begin{array}{cc}
+1 & 1\\
+1 & 1
+\end{array}\right],
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+c=\left[\begin{array}{c}
+0\\
+-1
+\end{array}\right],
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+w=\left[\begin{array}{c}
+1\\
+-2
+\end{array}\right],
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+and 
+\begin_inset Formula $b=0$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Example
+We can now get the points 
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+X=\left[\begin{array}{cc}
+0 & 0\\
+0 & 1\\
+1 & 0\\
+1 & 1
+\end{array}\right],
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+XW=\left[\begin{array}{cc}
+0 & 0\\
+1 & 1\\
+1 & 1\\
+2 & 2
+\end{array}\right].
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+Next we add the bias vector:
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+\left[\begin{array}{cc}
+0 & -1\\
+1 & 0\\
+1 & 0\\
+2 & 1
+\end{array}\right].
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+We apply Relu:
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+\left[\begin{array}{cc}
+0 & 0\\
+1 & 0\\
+1 & 0\\
+2 & 1
+\end{array}\right],
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+this nonlienar transformation is key as it allows the outter linear model
+ to fit the nonlinear XOR, finally multiplying by 
+\begin_inset Formula $w$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+\left[\begin{array}{c}
+0\\
+1\\
+1\\
+0
+\end{array}\right].
+\]
+
+\end_inset
+
+
 \end_layout
 
 \end_body
