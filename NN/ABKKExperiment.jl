@@ -16,9 +16,10 @@ end
 
 ##Machine Learning
 using Flux
+using Flux: params 
 
 tempdir1=@__DIR__
-rootdir=tempdir1[1:findfirst("TopicsDecisionMaking",tempdir1)[end]]
+rootdir=tempdir1[1:findfirst("USFQTopicsDecisionMaking",tempdir1)[end]]
 
 X1=CSV.read(rootdir*"/NN/data/ABKK_nnvictor.csv", DataFrame)
 
@@ -43,7 +44,7 @@ end
 
 function get_processed_data(args)
     labels = string.(X1.choice)
-    features = Matrix(X1[:,2:end])'
+    features = Matrix(X1[:,3:end])'
 
     # Subract mean, divide by std dev for normed mean of 0 and std dev of 1.
     normed_features = normalise(features, dims=2)

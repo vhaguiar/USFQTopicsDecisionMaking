@@ -1,7 +1,12 @@
+##Julia Version 1.6
+##Author: Victor H. Aguiar
+##Date: 2021-06-01
+##Description: This script is used to run the ABKK experiment.
+##             It is a pilot experiment to test the code.
 tempdir1=@__DIR__
-rootdir=tempdir1[1:findfirst("TopicsDecisionMaking",tempdir1)[end]]
+rootdir=tempdir1[1:findfirst("USFQTopicsDecisionMaking",tempdir1)[end]]
 cd(rootdir)
-cd(rootdir*"\\NN\\")
+cd(rootdir*"/NN")
 using Pkg
 Pkg.activate()
 using Distributed
@@ -22,6 +27,7 @@ end
 
 ##Machine Learning
 using Flux
+using Flux: params 
 
 
 X1=CSV.read(rootdir*"/NN/data/ABKK_nnvictor.csv", DataFrame)
@@ -128,6 +134,7 @@ end
 
 cd(@__DIR__)
 model, test_data = train()
+model, test_data = train(lr=0.1)
 test(model, test_data)
 
 normopt=true
