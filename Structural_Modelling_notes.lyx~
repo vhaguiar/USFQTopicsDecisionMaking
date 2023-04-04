@@ -4718,7 +4718,7 @@ We apply Relu:
 \end_layout
 
 \begin_layout Example
-this nonlienar transformation is key as it allows the outter linear model
+this nonlinear transformation is key as it allows the outter linear model
  to fit the nonlinear XOR, finally multiplying by 
 \begin_inset Formula $w$
 \end_inset
