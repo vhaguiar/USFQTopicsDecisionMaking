@@ -2,7 +2,7 @@
 ##Author: Victor H. Aguiar
 ##Date: 2021-06-01
 ##Description: This script is used to run the ABKK experiment.
-##             It is a pilot experiment to test the code.
+##It is a pilot study to test if we can predict perfectly out-of-sample choices on the ABBK experiment. 
 tempdir1=@__DIR__
 rootdir=tempdir1[1:findfirst("USFQTopicsDecisionMaking",tempdir1)[end]]
 cd(rootdir)
@@ -20,27 +20,22 @@ addprocs(7)
   using Combinatorics
   using LinearAlgebra
   using JuMP
-  #using Gurobi
-  #using KNITRO
-  #using Ipopt
 end
 
 ##Machine Learning
 using Flux
 using Flux: params 
 
+## Set a fixed random seed for reproducibility
+using Random
+Random.seed!(8942)
 
 X1=CSV.read(rootdir*"/NN/data/ABKK_nnvictor.csv", DataFrame)
 
 @everywhere model="RUM"   # put "LA", "RCG", or "RUM"
 
-## Common parameters
-dYm=5                               # Number of varying options in menus
-model=="RUM" ? dYu=6 : dYu=5        # For RUM there are 6 options instead of 5
-Menus=collect(powerset(vec(1:dYm))) # Menus
+##Flux is the Julia package for machine learning. It is a pure-Julia implementation of the popular Python package PyTorch.
 
-## Select only big Menu
-##data=X1[X1.Menu_Nail.==32,:]
 
 using Flux: logitcrossentropy, normalise, onecold, onehotbatch
 using Statistics: mean
@@ -205,7 +200,8 @@ X_testc=normalise(X_testc,dims=2)
 model3(X_testc)
 loss(X_testc,y_test)
 accuracy(X_testc,y_test,model3)
-
+#   A confusion matrix is a table that is used to describe the performance of a classification model on a set of data for which the true values are known. Each row of the matrix represents the instances in a predicted class, while each column represents the instances in an actual class (or vice versa). The name stems from the fact that it makes it easy to see if the model is confusing two classes (i.e., mislabeling one as another).
+#   In your case, the confusion matrix is a 6x6 matrix, which means that you have a classification problem with 6 classes. The diagonal elements of the matrix represent the number of correct predictions for each class (i.e., true positives), and the off-diagonal elements represent the incorrect predictions (i.e., false positives and false negatives).
 confusion_matrix(X_testc,y_test,model3)
 ######################
 #####################
