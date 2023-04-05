@@ -32,7 +32,6 @@ Random.seed!(8942)
 
 X1=CSV.read(rootdir*"/NN/data/ABKK_nnvictor.csv", DataFrame)
 
-@everywhere model="RUM"   # put "LA", "RCG", or "RUM"
 
 ##Flux is the Julia package for machine learning. It is a pure-Julia implementation of the popular Python package PyTorch.
 
@@ -88,8 +87,8 @@ function train(; kws...)
     #Loading processed data
     train_data, test_data = get_processed_data(args)
 
-    # Declare model taking 37 features as inputs and outputting 6 probabiltiies,
-    # one for each species of iris.
+    # Declare model taking 37 features as inputs and outputting 6 probabilities,
+    # one for each lottery.
     ##Create a traditional Dense layer with parameters W and b.
     ##y = σ.(W * x .+ b), x is of length 37 and y is of length 6.
     model = Chain(Dense(37, 6))
