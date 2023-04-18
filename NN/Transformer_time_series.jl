@@ -1,4 +1,4 @@
-##Julia Version 1.6
+##Julia Version 1.7.2
 ##Author: Victor H. Aguiar
 ##Date: 2023-04-18
 ##Description: This script is to train a simple tranformer to predict time series data.
@@ -15,7 +15,8 @@ Pkg.add("TensorBoardLogger")
 Pkg.add("Logging")
 Pkg.add("BSON")
 Pkg.add("LinearAlgebra")
-
+Pkg.add("Plots")
+Pkg.upgrade_manifest()
 
 using BSON: @save
 #using CUDA
