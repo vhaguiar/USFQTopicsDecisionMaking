@@ -19,10 +19,14 @@ a = assignments(R) # get the assignments of points to clusters
 c = counts(R) # get the cluster sizes
 M = R.centers # get the cluster centers
 
+#####################################################
+### k-medoids for choice sets
 ### k-modes
 using DataFrames, Clustering, Distances
 
 using DataFrames, Random
+
+using StatsBase
 
 function generate_choices(consumers, ranking_map, choice_sets)
     choices = []
@@ -37,7 +41,7 @@ end
 
 
 
-scale=100
+scale=300
 n = 120*scale
 consumers = 1:n
 choice_sets = vcat(fill(["a"], 60*scale), fill(["b", "c"], 60*scale))
@@ -87,23 +91,6 @@ function k_modes_distance(a::AbstractVector, b::AbstractVector)
     return sum([count(a[i] .!= b[i]) for i in 1:length(a)])
 end
 
-##
-# # Create a dictionary to map categorical values to integers
-# # Create a dictionary to map categorical values to integers
-# mapping = Dict(
-#     "a" => 1, "b" => 2, "c" => 3
-# )
-
-# # Convert data_matrix to numeric matrix using the mapping
-# numeric_data_matrix = Matrix{Int}(undef, size(data_matrix))
-# for i in 1:size(data_matrix, 1)
-#     for j in 1:size(data_matrix, 2)
-#         numeric_data_matrix[i, j] = mapping[data_matrix[i, j]]
-#     end
-# end
-
-# # Transpose the numeric_data_matrix
-# transposed_data_matrix = numeric_data_matrix'
 
 
 # Compute the pairwise distance matrix using the custom function
@@ -118,15 +105,15 @@ for i in 1:n
 end
 
 k = 2^3
+Random.seed!(42)
 result = kmedoids(distances, k)
 
 data[!, "cluster"] = result.assignments
 
-println(result.assignments)
+#println(result.assignments)
 
 
 
-using EvalMetrics
 
 function choice_set_to_label(choice_set)
     if choice_set == ["a"]
@@ -152,60 +139,38 @@ data[!, "truelabels"]=choice_set_labels
 ##validation  111
 cluster_111_rows = data[data[!, :truelabels] .== 111, :]
 unique(cluster_111_rows.cluster)
-
+countmap(cluster_111_rows.cluster)
 ##validation 221
 cluster_221_rows = data[data[!, :truelabels] .== 221, :]
 unique(cluster_221_rows.cluster)
-
+countmap(cluster_221_rows.cluster)
 ##validation 222
 cluster_222_rows = data[data[!, :truelabels] .== 222, :]
 unique(cluster_222_rows.cluster)
+countmap(cluster_222_rows.cluster)
 
 ##validation 211
 cluster_211_rows = data[data[!, :truelabels] .== 211, :]
 unique(cluster_211_rows.cluster)
-
+countmap(cluster_211_rows.cluster)
 ##validation 121
 cluster_121_rows = data[data[!, :truelabels] .== 121, :]
 unique(cluster_121_rows.cluster)
-
+countmap(cluster_121_rows.cluster)
 ##validation 122
 cluster_122_rows = data[data[!, :truelabels] .== 122, :]
 unique(cluster_122_rows.cluster)
-
+countmap(cluster_122_rows.cluster)
 ##validation 212
 cluster_212_rows = data[data[!, :truelabels] .== 212, :]
 unique(cluster_212_rows.cluster)
-
+countmap(cluster_212_rows.cluster)
 ##validation 112
 cluster_112_rows = data[data[!, :truelabels] .== 112, :]
 unique(cluster_112_rows.cluster)
+countmap(cluster_112_rows.cluster)
 
 
-# data.cluster
-# # Create the confusion matrix
-# function create_confusion_matrix(true_labels, predicted_labels)
-#     n_labels = k
-#     confusion_matrix = zeros(Int, n_labels, n_labels)
-    
-#     for (true_label, predicted_label) in zip(true_labels, predicted_labels)
-#         confusion_matrix[true_label, predicted_label] += 1
-#     end
-    
-#     return confusion_matrix
-# end
-
-# confusion_matrix = create_confusion_matrix(choice_set_labels, data.cluster)
-
-
-
-# using Combinatorics
-
-# # Define the set of values for v01, v02, and v03
-# values = [1, 2]
-
-# # Generate all possible combinations of v01, v02, and v03
-# combinations = collect(Iterators.product(values, values, values))
 
 # Initialize an empty dictionary
 mapping = Dict{Int, Int}()
@@ -268,3 +233,53 @@ function create_confusion_matrix(true_labels, predicted_labels)
 end
 
 confusion_matrix = create_confusion_matrix(true_labels, data.cluster)
+
+#### 
+using Random
+
+Random.seed!(9847)
+
+# Generate a random initial set of centroids
+
+init_centroids = sample(1:n, k, replace=false)
+
+# Perform k-medoids clustering with random initial centroids
+result = kmedoids(distances, k, init=init_centroids)
+
+result = kmedoids(distances, k, init=:kmpp)
+
+data[!, "cluster"] = result.assignments
+
+##validation  111
+cluster_111_rows = data[data[!, :truelabels] .== 111, :]
+unique(cluster_111_rows.cluster)
+countmap(cluster_111_rows.cluster)
+##validation 221
+cluster_221_rows = data[data[!, :truelabels] .== 221, :]
+unique(cluster_221_rows.cluster)
+countmap(cluster_221_rows.cluster)
+##validation 222
+cluster_222_rows = data[data[!, :truelabels] .== 222, :]
+unique(cluster_222_rows.cluster)
+countmap(cluster_222_rows.cluster)
+
+##validation 211
+cluster_211_rows = data[data[!, :truelabels] .== 211, :]
+unique(cluster_211_rows.cluster)
+countmap(cluster_211_rows.cluster)
+##validation 121
+cluster_121_rows = data[data[!, :truelabels] .== 121, :]
+unique(cluster_121_rows.cluster)
+countmap(cluster_121_rows.cluster)
+##validation 122
+cluster_122_rows = data[data[!, :truelabels] .== 122, :]
+unique(cluster_122_rows.cluster)
+countmap(cluster_122_rows.cluster)
+##validation 212
+cluster_212_rows = data[data[!, :truelabels] .== 212, :]
+unique(cluster_212_rows.cluster)
+countmap(cluster_212_rows.cluster)
+##validation 112
+cluster_112_rows = data[data[!, :truelabels] .== 112, :]
+unique(cluster_112_rows.cluster)
+countmap(cluster_112_rows.cluster)
