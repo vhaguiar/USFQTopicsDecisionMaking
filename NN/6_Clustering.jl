@@ -182,7 +182,79 @@ cluster_112_rows = data[data[!, :truelabels] .== 112, :]
 unique(cluster_112_rows.cluster)
 
 
-data.cluster
+# data.cluster
+# # Create the confusion matrix
+# function create_confusion_matrix(true_labels, predicted_labels)
+#     n_labels = k
+#     confusion_matrix = zeros(Int, n_labels, n_labels)
+    
+#     for (true_label, predicted_label) in zip(true_labels, predicted_labels)
+#         confusion_matrix[true_label, predicted_label] += 1
+#     end
+    
+#     return confusion_matrix
+# end
+
+# confusion_matrix = create_confusion_matrix(choice_set_labels, data.cluster)
+
+
+
+# using Combinatorics
+
+# # Define the set of values for v01, v02, and v03
+# values = [1, 2]
+
+# # Generate all possible combinations of v01, v02, and v03
+# combinations = collect(Iterators.product(values, values, values))
+
+# Initialize an empty dictionary
+mapping = Dict{Int, Int}()
+
+# Iterate over the combinations and create the mapping for v1
+# Create a dictionary for mapping
+mapping = Dict(
+    111 => 8,7,
+    221 => 2,
+    222 => 5,
+    211 => 3,7,
+    121 => 2,
+    122 => 4,
+    212 => 1,
+    112 => 6,1
+)
+
+
+mapping = Dict(
+    111 => 8,
+    221 => 2,
+    222 => 5,
+    211 => 3,
+    121 => 2,
+    122 => 4,
+    212 => 1,
+    112 => 6
+)
+
+# Print the resulting mapping
+println(mapping)
+
+mapping[choice_set_labels[1]]
+
+# Define the choice_set_labels vector with some example values
+
+# Initialize an empty vector to store the mapped values
+true_labels = Int[]
+
+# Iterate over the choice_set_labels vector and apply the mapping
+for label in choice_set_labels
+    mapped_label = mapping[label]
+    push!(true_labels, mapped_label)
+end
+
+# Print the resulting mapped_choice_set_labels vector
+println(true_labels)
+println(data.cluster)
+
 # Create the confusion matrix
 function create_confusion_matrix(true_labels, predicted_labels)
     n_labels = k
@@ -195,63 +267,4 @@ function create_confusion_matrix(true_labels, predicted_labels)
     return confusion_matrix
 end
 
-confusion_matrix = create_confusion_matrix(choice_set_labels, data.cluster)
-
-
-
-using Combinatorics
-
-# Define the set of values for v01, v02, and v03
-values = [1, 2]
-
-# Generate all possible combinations of v01, v02, and v03
-combinations = collect(Iterators.product(values, values, values))
-
-# Initialize an empty dictionary
-mapping = Dict{Int, Int}()
-
-# Iterate over the combinations and create the mapping for v1
-# Create a dictionary for mapping
-mapping = Dict(
-    111 => 1,
-    112 => 2,
-    121 => 3,
-    122 => 4,
-    211 => 5,
-    212 => 6,
-    221 => 7,
-    222 => 8
-)
-
-
-
-# Print the resulting mapping
-println(mapping)
-
-mapping[choice_set_labels[1]]
-
-# Define the choice_set_labels vector with some example values
-
-# Initialize an empty vector to store the mapped values
-mapped_choice_set_labels = Int[]
-
-# Iterate over the choice_set_labels vector and apply the mapping
-for label in choice_set_labels
-    mapped_label = mapping[label]
-    push!(mapped_choice_set_labels, mapped_label)
-end
-
-# Print the resulting mapped_choice_set_labels vector
-println(mapped_choice_set_labels)
-println(data.cluster)
-
-relabel=Dict(
-    4=>6,
-    7=>1,
-    8=>7,
-    6=>4,
-    5=>5,
-    3=>3,
-    2=>2,
-    1=>8
-)
+confusion_matrix = create_confusion_matrix(true_labels, data.cluster)

@@ -4742,5 +4742,380 @@ this nonlinear transformation is key as it allows the outter linear model
 
 \end_layout
 
+\begin_layout Chapter
+K-means and K-medoids
+\end_layout
+
+\begin_layout Standard
+(Material adapted from Lester Mackey's slides).
+ 
+\end_layout
+
+\begin_layout Section
+Unsupervised learning
+\end_layout
+
+\begin_layout Standard
+The world is filled with apparent high dimensional complexity however it
+ may be that much of the underlying structure is low-dimensional.
+ How do we uncover the hidden structure of categories underlying our data?
+\end_layout
+
+\begin_layout Standard
+Unsupervised learning given covariates 
+\begin_inset Formula $x_{1},\cdots,x_{n}$
+\end_inset
+
+, we can infer the underlying structure.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Clustering: 
+\series default
+Group these unlabeled images into three clusters or groups.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/Kmeansimages.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Example of image clustering for the students
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We humans seem to be able to easily categorize a set of complex objects
+ to simplify understanding, we can apply the same principle to machine learning.
+ 
+\end_layout
+
+\begin_layout Standard
+Unsupervised learning is useful because most datasets are in fact unlabeled.
+ Also they could be use to obtain compressed representations to save storage
+ and computation.
+ 
+\end_layout
+
+\begin_layout Standard
+They reduce noise, missing data, and irrelevant attributes in high-dimensional
+ data.
+ 
+\end_layout
+
+\begin_layout Standard
+It can be used also as a pre-processing step for supervised learning.
+ 
+\end_layout
+
+\begin_layout Section
+K-means
+\end_layout
+
+\begin_layout Standard
+The objective of K-means is to assign each datapoint to one of 
+\begin_inset Formula $k$
+\end_inset
+
+ clusters so that no average is closer to its cluster mean.
+ 
+\end_layout
+
+\begin_layout Standard
+Datapoints 
+\begin_inset Formula $x_{i}\in\mathbb{R}^{p}$
+\end_inset
+
+, cluster mean is 
+\begin_inset Formula $m_{j}\in\mathbb{R}^{p}$
+\end_inset
+
+, cluster assignment is 
+\begin_inset Formula $z_{i}\in\{1,\cdots,k\}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Objective: 
+\begin_inset Formula $J(z_{1:n},m_{1:k})=\sum_{i=1}^{n}||x_{i}-m_{z_{i}}||_{2}^{2}$
+\end_inset
+
+, where 
+\begin_inset Formula $||\cdot||_{2}^{2}$
+\end_inset
+
+ is the squared Euclidean norm.
+ 
+\end_layout
+
+\begin_layout Standard
+Goal: Minimize 
+\begin_inset Formula $J$
+\end_inset
+
+ over 
+\begin_inset Formula $z_{1:n}$
+\end_inset
+
+ and 
+\begin_inset Formula $m_{1:k}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Section
+Standard 
+\begin_inset Formula $k$
+\end_inset
+
+-means algorithm/ Lloyd's algorithm
+\end_layout
+
+\begin_layout Standard
+-Initialize cluster means arbitrarily (e.g.
+ sample from datapoints)
+\end_layout
+
+\begin_layout Standard
+-Alternate until convergence 
+\end_layout
+
+\begin_layout Itemize
+Update cluster assignments: 
+\begin_inset Formula $z_{1:n}\leftarrow argmin_{z_{1:n}}J(z_{1:n}m_{1:k})$
+\end_inset
+
+, i.e., assign each point to the cluster with the closest mean.
+ 
+\end_layout
+
+\begin_layout Itemize
+Update cluster means: 
+\begin_inset Formula $m_{1:k}\leftarrow argmin_{m_{1:k}}J(z_{1:n},m_{1:k})$
+\end_inset
+
+, i.e., 
+\begin_inset Formula $m_{j}=\frac{\sum_{i=1}^{n}1(z_{i}=j)x_{i}}{\sum_{i=1}^{n}1(z_{i}=j)},$
+\end_inset
+
+ the mean of points in cluster 
+\begin_inset Formula $j$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The objective 
+\begin_inset Formula $J$
+\end_inset
+
+ 
+\series bold
+always converges.
+ 
+\end_layout
+
+\begin_layout Standard
+Lloyd's algorithm is a coordinate descent procedure.
+ Each step monotonically decreases the objective.
+ 
+\end_layout
+
+\begin_layout Standard
+Only finite number of partitions of data, so the objective must converge
+ in finite number of steps.
+ 
+\end_layout
+
+\begin_layout Standard
+Technically the algorithm could cycle if ties arise (multiple centroids
+ equidistant from point).
+ 
+\end_layout
+
+\begin_layout Standard
+We can avoid ties by assigning always the point to the smallest centroid
+ under some total ordering of vectors.
+ 
+\end_layout
+
+\begin_layout Section
+K-means limitations and Categorical Data
+\end_layout
+
+\begin_layout Standard
+The Euclidean distance is restrictive for certain dataset like categorical
+ features.
+ Also the Euclidean distance is sensitive to outliers, and ill-suited for
+ datasets with very different units/scales.
+ 
+\end_layout
+
+\begin_layout Standard
+Also the K-means optimization problem is NP-hard.
+ Lloyd's algorithm usually finds suboptimal solutions.
+ Many random restarts often needed to obtain good performance.
+ 
+\end_layout
+
+\begin_layout Standard
+Most important 
+\series bold
+the user must choose
+\series default
+ 
+\begin_inset Formula $k$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Running time: #features 
+\begin_inset Formula $\times$
+\end_inset
+
+ datapoints 
+\begin_inset Formula $\times$
+\end_inset
+
+
+\begin_inset Formula $k$
+\end_inset
+
+ per iteration.
+ 
+\end_layout
+
+\begin_layout Standard
+Generalized problem:
+\end_layout
+
+\begin_layout Standard
+Minimize 
+\begin_inset Formula $J_{d}(z_{1:n},m_{1:k})=\sum_{i=1}^{n}d(x_{i},m_{z_{i}})$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Arbitrary dissimilarity/discrepancy measure 
+\begin_inset Formula $d(x,m)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Optimize via coordinate descent as in Lloyd's algorithm.
+ 
+\end_layout
+
+\begin_layout Standard
+The great advantage is that it applies to all data types and dissimilarity
+ measures.
+ 
+\end_layout
+
+\begin_layout Standard
+Updating cluster representative 
+\begin_inset Formula $m_{1:k}$
+\end_inset
+
+ may be expensive.
+\end_layout
+
+\begin_layout Section
+K-medoids algorithm
+\end_layout
+
+\begin_layout Standard
+Minimize 
+\begin_inset Formula $J_{d}$
+\end_inset
+
+ above but constrain each cluster representative to be a datapoint i.e., 
+\begin_inset Formula $m_{j}\in\{x_{1},\cdots,x_{n}\}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Don't need to store datapoint, only pairwise discrepancies.
+ 
+\begin_inset Formula $d(x_{i},x_{j})$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Section
+Choosing the number of clusters 
+\begin_inset Formula $k$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Best case known beforehand.
+ 
+\end_layout
+
+\begin_layout Standard
+Elbow method.
+ 
+\end_layout
+
+\begin_layout Standard
+Gap statistic.
+ 
+\end_layout
+
 \end_body
 \end_document
