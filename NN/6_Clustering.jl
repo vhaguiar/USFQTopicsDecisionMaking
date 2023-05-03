@@ -41,7 +41,7 @@ end
 
 
 
-scale=300
+scale=100
 n = 120*scale
 consumers = 1:n
 choice_sets = vcat(fill(["a"], 60*scale), fill(["b", "c"], 60*scale))
@@ -107,10 +107,21 @@ end
 k = 2^3
 Random.seed!(42)
 result = kmedoids(distances, k)
-
+resultcomparison=result.totalcost
 data[!, "cluster"] = result.assignments
+for i in 1:10000
+    Random.seed!(i)
+    init_centroids = sample(1:n, k, replace=false)
+    # Perform k-medoids clustering with random initial centroids
+    result = kmedoids(distances, k, init=init_centroids)
+    # Store the cost of the clustering
+    if result.totalcost<resultcomparison
+        data[!, "cluster"] = result.assignments
+    end 
+end
 
-#println(result.assignments)
+    
+
 
 
 
@@ -237,7 +248,7 @@ confusion_matrix = create_confusion_matrix(true_labels, data.cluster)
 #### 
 using Random
 
-Random.seed!(9847)
+Random.seed!(9847587)
 
 # Generate a random initial set of centroids
 
@@ -246,7 +257,7 @@ init_centroids = sample(1:n, k, replace=false)
 # Perform k-medoids clustering with random initial centroids
 result = kmedoids(distances, k, init=init_centroids)
 
-result = kmedoids(distances, k, init=:kmpp)
+#result = kmedoids(distances, k, init=:kmpp)
 
 data[!, "cluster"] = result.assignments
 
