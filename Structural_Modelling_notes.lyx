@@ -132,7 +132,7 @@ Victor H.
 \end_layout
 
 \begin_layout Date
-This version: January 2023
+This version: January 2024
 \end_layout
 
 \begin_layout Part
@@ -144,8 +144,35 @@ Structural Modeling
 \end_layout
 
 \begin_layout Standard
-We will illustrate this by means of an example.
+The Cowles Commision defined econometrics as a 
+\begin_inset Quotes eld
+\end_inset
+
+branch of economics in which economic theory and statistical methods are
+ fused in the analysis of numerical and institutional data
+\begin_inset Quotes erd
+\end_inset
+
+ Hood and Koopmans (1953).
+ Econometrics nowadays has a broader definition, but the branch of econometrics
+ that combines economic theories with statistical models is called structural
+ econometric models.
  
+\end_layout
+
+\begin_layout Section
+The Gravity Model of Trade
+\end_layout
+
+\begin_layout Standard
+We will illustrate an instance of structural modeling using an example from
+ international trade.
+ The gravity model of trade as formalized by Anderson and Van Wincoop (2003)
+ is one of the most successful applications of structural modeling.
+ The gravity model of trade tries to provide a theoretical explanation of
+ the following empirical fact the nominal bilateral trade is directly proportion
+al to the mass of the countries and inversely proportional to distance.
+ This fact can be generalized to many countries.
 \end_layout
 
 \begin_layout Standard
@@ -155,12 +182,12 @@ We will illustrate this by means of an example.
 
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 (Theory) Gravity model of trade.
  
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 We have 
 \begin_inset Formula $I$
 \end_inset
@@ -173,14 +200,14 @@ We have
  
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 We assume that each country specializes in the production of only one good.
  The supply of each good is fixed (equivalently, each region is endowed
  with only positive quantity of one good, and there is no production).
  
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 If 
 \begin_inset Formula $c_{ij}$
 \end_inset
@@ -200,7 +227,7 @@ If
  maximize
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 \begin_inset Formula 
 \[
 U_{j}(c)=\left(\sum_{i\in I}\beta_{i}^{(1-\sigma)/\sigma}c_{ij}^{(\sigma-1)/\sigma}\right)^{\sigma/(\sigma-1)},
@@ -211,11 +238,11 @@ U_{j}(c)=\left(\sum_{i\in I}\beta_{i}^{(1-\sigma)/\sigma}c_{ij}^{(\sigma-1)/\sig
 
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 subject to the budget constraint
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 \begin_inset Formula 
 \[
 \sum_{i}p_{ij}c_{ij}=y_{j}.
@@ -226,7 +253,7 @@ subject to the budget constraint
 
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 We have 
 \begin_inset Formula $\sigma$
 \end_inset
@@ -259,7 +286,7 @@ We have
  
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 Notice that 
 \begin_inset Formula $p_{ij}$
 \end_inset
@@ -272,7 +299,7 @@ Notice that
  
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 Let 
 \begin_inset Formula $p_{i}$
 \end_inset
@@ -292,7 +319,7 @@ Let
  then there is free-trade).
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 \begin_inset Formula 
 \[
 p_{ij}=p_{i}t_{ij}.
@@ -303,12 +330,12 @@ p_{ij}=p_{i}t_{ij}.
 
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 We assume that trade costs are absorbed by the exporter.
  
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 Formally, we assume that for each good shipped from 
 \begin_inset Formula $i$
 \end_inset
@@ -330,11 +357,11 @@ Formally, we assume that for each good shipped from
  
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 The nominal value of exports is:
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 \begin_inset Formula 
 \[
 x_{ij}=p_{ij}c_{ij}.
@@ -345,12 +372,12 @@ x_{ij}=p_{ij}c_{ij}.
 
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 Market clearing implies here that in nominal terms endowments are equal
  to aggregate demand:
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 \begin_inset Formula 
 \[
 y_{i}=\sum_{j\in I}x_{ij}.
@@ -361,7 +388,7 @@ y_{i}=\sum_{j\in I}x_{ij}.
 
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 1) Show that the nominal demand for country 
 \begin_inset Formula $i$
 \end_inset
@@ -373,7 +400,7 @@ y_{i}=\sum_{j\in I}x_{ij}.
  consumer is:
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 \begin_inset Formula 
 \[
 x_{ij}=\left(\frac{\beta_{i}p_{i}t_{ij}}{P_{j}}\right)^{(1-\sigma)}y_{j},
@@ -384,7 +411,7 @@ x_{ij}=\left(\frac{\beta_{i}p_{i}t_{ij}}{P_{j}}\right)^{(1-\sigma)}y_{j},
 
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 where 
 \begin_inset Formula $P_{j}$
 \end_inset
@@ -396,7 +423,7 @@ where
 , given by 
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 \begin_inset Formula 
 \[
 P_{j}=\left[\sum_{i\in I}(\beta_{i}p_{i}t_{ij})^{1-\sigma}\right]^{1/(1-\sigma)}.
@@ -407,28 +434,28 @@ P_{j}=\left[\sum_{i\in I}(\beta_{i}p_{i}t_{ij})^{1-\sigma}\right]^{1/(1-\sigma)}
 
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 Important: I need step-by-step derivation.
  
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 2) Show, using the nominal market-clearing conditions and the results from
  1) that:
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 \begin_inset Formula $\beta_{i}p_{i}=\frac{y_{i}^{1/(1-\sigma)}}{(\sum_{j\in I}(t_{ij}/P_{j})^{1-\sigma}y_{j})^{1/(1-\sigma)}}.$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 Important: I need step-by-step derivation.
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 3) Let 
 \begin_inset Formula $y^{W}=\sum_{j\in I}y_{j}$
 \end_inset
@@ -445,7 +472,7 @@ Important: I need step-by-step derivation.
  on the nominal demand, we can obtain:
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 \begin_inset Formula 
 \[
 x_{ij}=\frac{y_{i}y_{j}}{y^{W}}\left(\frac{t_{ij}}{\Pi_{i}P_{j}}\right)^{1-\sigma},
@@ -456,11 +483,11 @@ x_{ij}=\frac{y_{i}y_{j}}{y^{W}}\left(\frac{t_{ij}}{\Pi_{i}P_{j}}\right)^{1-\sigm
 
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 where 
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 \begin_inset Formula 
 \[
 \Pi_{i}=\left(\sum_{j\in I}(t_{ij}/P_{j})^{1-\sigma}\theta_{j}\right)^{1/(1-\sigma)}.
@@ -471,12 +498,12 @@ where
 
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 Important: I need step-by-step derivation.
  
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 4) Assume that 
 \begin_inset Formula $t_{ij}=t_{ji}$
 \end_inset
@@ -484,7 +511,7 @@ Important: I need step-by-step derivation.
 , where trade barriers are symmetric, show that:
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 \begin_inset Formula 
 \[
 \Pi_{i}=P_{i}.
@@ -495,7 +522,7 @@ Important: I need step-by-step derivation.
 
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 Under this condition, we have an implicit solution to the price indexes
  
 \begin_inset Formula $P_{i}$
@@ -504,7 +531,7 @@ Under this condition, we have an implicit solution to the price indexes
  given by
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 \begin_inset Formula 
 \[
 P_{j}^{1-\sigma}=\sum_{i\in I}P_{i}^{\sigma-1}\theta_{i}t_{ij}^{1-\sigma}\forall j,
@@ -515,11 +542,11 @@ P_{j}^{1-\sigma}=\sum_{i\in I}P_{i}^{\sigma-1}\theta_{i}t_{ij}^{1-\sigma}\forall
 
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 show that there is at least one solution to this system of equations.
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 For this part use the file 
 \backslash
 GitHub
@@ -550,7 +577,7 @@ fixedpoint_contraction_mapping_jacobian.pdf, Theorem 1 and Theorem 2.
  
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 \begin_inset Formula 
 \[
 P_{j}=g_{j}(P_{1},\cdots P_{I}).
@@ -561,7 +588,7 @@ P_{j}=g_{j}(P_{1},\cdots P_{I}).
 
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 For the gravity model 
 \begin_inset Formula $g$
 \end_inset
@@ -574,7 +601,7 @@ For the gravity model
  
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 Important: Only for this item, assume that 
 \begin_inset Formula $I=\{1,2\}$
 \end_inset
@@ -600,7 +627,7 @@ Important: Only for this item, assume that
  
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 5) Show that, the gravity model implies that there are constants 
 \begin_inset Formula $\alpha_{i}\forall i\in I$
 \end_inset
@@ -612,7 +639,7 @@ Important: Only for this item, assume that
  such that:
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 \begin_inset Formula 
 \[
 z_{ij}=logx_{ij}-log(y_{i})-log(y_{j})
@@ -623,7 +650,7 @@ z_{ij}=logx_{ij}-log(y_{i})-log(y_{j})
 
 \end_layout
 
-\begin_layout Problem
+\begin_layout Example
 \begin_inset Formula 
 \[
 z_{ij}=-\alpha_{i}-\alpha_{j}+\rho log(t_{ij}).
@@ -945,7 +972,7 @@ P_{j}^{\beta}=\sum_{i\in I}P_{i}^{-\beta}\frac{y_{i}}{\alpha}t_{ij}^{\beta}
 \end_layout
 
 \begin_layout Section
-Understanding Identification and Reduced Form
+Understanding Identification and Reduced Form: Supply and Demand.
 \end_layout
 
 \begin_layout Standard
